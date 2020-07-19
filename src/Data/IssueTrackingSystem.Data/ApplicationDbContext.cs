@@ -32,6 +32,7 @@
 
         public DbSet<Article> Articles { get; set; }
 
+        public DbSet<Note> Notes { get; set; }
 
         public DbSet<Setting> Settings { get; set; }
 
