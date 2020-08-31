@@ -8,9 +8,9 @@ namespace IssueTrackingSystem.Data.Models
 
         public virtual Ticket Ticket { get; set; }
 
-        public int? ParentId { get; set; }
+        //public int? ParentId { get; set; }
 
-        public virtual Comment Parent { get; set; }
+        //public virtual Comment Parent { get; set; }
 
         public string Content { get; set; }
 

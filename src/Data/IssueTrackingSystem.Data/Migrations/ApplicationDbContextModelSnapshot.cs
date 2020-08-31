@@ -233,9 +233,6 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ParentId")
-                        .HasColumnType("int");
-
                     b.Property<int>("TicketId")
                         .HasColumnType("int");
 
@@ -245,8 +242,6 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("ParentId");
 
                     b.HasIndex("TicketId");
 
@@ -494,10 +489,6 @@ namespace IssueTrackingSystem.Data.Migrations
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Comment", b =>
                 {
-                    b.HasOne("IssueTrackingSystem.Data.Models.Comment", "Parent")
-                        .WithMany()
-                        .HasForeignKey("ParentId");
-
                     b.HasOne("IssueTrackingSystem.Data.Models.Ticket", "Ticket")
                         .WithMany("Comments")
                         .HasForeignKey("TicketId")
@@ -505,7 +496,7 @@ namespace IssueTrackingSystem.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("Comments")
                         .HasForeignKey("UserId");
                 });
 
@@ -519,7 +510,7 @@ namespace IssueTrackingSystem.Data.Migrations
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Ticket", b =>
                 {
                     b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "Author")
-                        .WithMany()
+                        .WithMany("Tickets")
                         .HasForeignKey("AuthorId");
 
                     b.HasOne("IssueTrackingSystem.Data.Models.Category", "Category")
