@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace IssueTrackingSystem.Data.Models
+﻿namespace IssueTrackingSystem.Data.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
     public class UserTicket
     {
         public string UserId { get; set; }
