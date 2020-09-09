@@ -9,9 +9,9 @@ namespace IssueTrackingSystem.Data.Configurations
 {
     public class UserTicketConfiguration : IEntityTypeConfiguration<UserTicket>
     {
-        public void Configure(EntityTypeBuilder<UserTicket> builder)
+        public void Configure(EntityTypeBuilder<UserTicket> userTicket)
         {
-            // TODO
+            userTicket.HasKey(ut => new { ut.UserId, ut.TicketId });
         }
     }
 }
