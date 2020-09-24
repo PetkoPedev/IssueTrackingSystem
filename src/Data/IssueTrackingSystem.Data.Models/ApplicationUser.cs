@@ -19,6 +19,7 @@ namespace IssueTrackingSystem.Data.Models
             this.Tickets = new HashSet<Ticket>();
             this.Comments = new HashSet<Comment>();
             this.Notes = new HashSet<Note>();
+            this.Articles = new HashSet<Article>();
         }
 
         // Audit info
@@ -42,5 +43,7 @@ namespace IssueTrackingSystem.Data.Models
         public virtual ICollection<Comment> Comments { get; set; }
 
         public virtual ICollection<Note> Notes { get; set; }
+
+        public virtual ICollection<Article> Articles { get; set; }
     }
 }

@@ -9,9 +9,22 @@ namespace IssueTrackingSystem.Data.Configurations
 {
     public class CommentConfiguration : IEntityTypeConfiguration<Comment>
     {
-        public void Configure(EntityTypeBuilder<Comment> builder)
+        public void Configure(EntityTypeBuilder<Comment> comment)
         {
-            // TODO
+            comment.HasKey(c => c.Id);
+
+            comment.Property(t => t.Content)
+                .HasMaxLength(500)
+                .IsRequired(true)
+                .IsUnicode(true);
+
+            comment.HasOne(c => c.Ticket)
+                .WithMany(t => t.Comments)
+                .HasForeignKey(c => c.TicketId);
+
+            comment.HasOne(c => c.User)
+                .WithMany(t => t.Comments)
+                .HasForeignKey(c => c.UserId);
         }
     }
 }
