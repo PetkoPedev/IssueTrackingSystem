@@ -4,14 +4,16 @@ using IssueTrackingSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IssueTrackingSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200719192440_AddArticles")]
+    partial class AddArticles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -233,6 +235,9 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int");
+
                     b.Property<int>("TicketId")
                         .HasColumnType("int");
 
@@ -243,51 +248,13 @@ namespace IssueTrackingSystem.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
+                    b.HasIndex("ParentId");
+
                     b.HasIndex("TicketId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Comments");
-                });
-
-            modelBuilder.Entity("IssueTrackingSystem.Data.Models.Note", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AuthorId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("NoteId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.ToTable("Notes");
                 });
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Setting", b =>
@@ -374,21 +341,6 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Tickets");
-                });
-
-            modelBuilder.Entity("IssueTrackingSystem.Data.Models.UserTicket", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("TicketId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "TicketId");
-
-                    b.HasIndex("TicketId");
-
-                    b.ToTable("UserTickets");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -504,6 +456,10 @@ namespace IssueTrackingSystem.Data.Migrations
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Comment", b =>
                 {
+                    b.HasOne("IssueTrackingSystem.Data.Models.Comment", "Parent")
+                        .WithMany()
+                        .HasForeignKey("ParentId");
+
                     b.HasOne("IssueTrackingSystem.Data.Models.Ticket", "Ticket")
                         .WithMany("Comments")
                         .HasForeignKey("TicketId")
@@ -511,41 +467,19 @@ namespace IssueTrackingSystem.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "User")
-                        .WithMany("Comments")
+                        .WithMany()
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("IssueTrackingSystem.Data.Models.Note", b =>
-                {
-                    b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "Author")
-                        .WithMany("Notes")
-                        .HasForeignKey("AuthorId");
                 });
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Ticket", b =>
                 {
                     b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "Author")
-                        .WithMany("Tickets")
+                        .WithMany()
                         .HasForeignKey("AuthorId");
 
                     b.HasOne("IssueTrackingSystem.Data.Models.Category", "Category")
                         .WithMany("Tickets")
                         .HasForeignKey("CategoryId1");
-                });
-
-            modelBuilder.Entity("IssueTrackingSystem.Data.Models.UserTicket", b =>
-                {
-                    b.HasOne("IssueTrackingSystem.Data.Models.Ticket", "Ticket")
-                        .WithMany()
-                        .HasForeignKey("TicketId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
