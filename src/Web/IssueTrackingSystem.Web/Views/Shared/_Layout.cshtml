@@ -42,24 +42,8 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Login -->
-            <li class="nav-item">
-                <a class="nav-link" href="Login.html">
-                    <i class="fas fa-warehouse"></i>
-                    <span>Login</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - Register -->
-            <li class="nav-item">
-                <a class="nav-link" href="Register.html">
-                    <i class="fas fa-user-alt"></i>
-                    <span>Register</span>
-                </a>
-            </li>
-
+            <partial name="_LoginPartial.cshtml" />
+            @RenderSection("Links", false)
             <!-- Heading -->
             <!--<div class="sidebar-heading">
         Interface
