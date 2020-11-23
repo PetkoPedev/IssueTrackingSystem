@@ -8,8 +8,6 @@
 
     public class Note : BaseDeletableModel<int>
     {
-        public int NoteId { get; set; }
-
         public string Name { get; set; }
 
         public string Content { get; set; }

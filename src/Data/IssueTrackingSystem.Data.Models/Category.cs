@@ -9,12 +9,13 @@
         public Category()
         {
             this.Tickets = new HashSet<Ticket>();
+            this.Articles = new HashSet<Article>();
         }
 
-        public int CategoryId { get; set; }
-
-        public string CategoryName { get; set; }
+        public string Name { get; set; }
 
         public virtual ICollection<Ticket> Tickets { get; set; }
+
+        public virtual ICollection<Article> Articles { get; set; }
     }
 }

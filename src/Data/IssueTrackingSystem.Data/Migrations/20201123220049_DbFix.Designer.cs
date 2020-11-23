@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IssueTrackingSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200831134414_UpdateDbAppUser")]
-    partial class UpdateDbAppUser
+    [Migration("20201123220049_DbFix")]
+    partial class DbFix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -148,14 +148,11 @@ namespace IssueTrackingSystem.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ArticleId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ArticleName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AuthorId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
@@ -172,11 +169,16 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId");
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Articles");
                 });
@@ -187,12 +189,6 @@ namespace IssueTrackingSystem.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CategoryName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -205,6 +201,9 @@ namespace IssueTrackingSystem.Data.Migrations
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -280,9 +279,6 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("NoteId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AuthorId");
@@ -331,9 +327,6 @@ namespace IssueTrackingSystem.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AuthorId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("CategoryId")
                         .HasColumnType("nvarchar(max)");
 
@@ -355,9 +348,6 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("TicketId")
-                        .HasColumnType("int");
-
                     b.Property<int>("TicketPriority")
                         .HasColumnType("int");
 
@@ -367,15 +357,33 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasIndex("AuthorId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CategoryId1");
 
                     b.HasIndex("IsDeleted");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("IssueTrackingSystem.Data.Models.UserTicket", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("TicketId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "TicketId");
+
+                    b.HasIndex("TicketId");
+
+                    b.ToTable("UserTickets");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -484,9 +492,15 @@ namespace IssueTrackingSystem.Data.Migrations
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Article", b =>
                 {
-                    b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
+                    b.HasOne("IssueTrackingSystem.Data.Models.Category", "Category")
+                        .WithMany("Articles")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "User")
+                        .WithMany("Articles")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Comment", b =>
@@ -505,19 +519,34 @@ namespace IssueTrackingSystem.Data.Migrations
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Note", b =>
                 {
                     b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "Author")
-                        .WithMany()
+                        .WithMany("Notes")
                         .HasForeignKey("AuthorId");
                 });
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Ticket", b =>
                 {
-                    b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "Author")
-                        .WithMany("Tickets")
-                        .HasForeignKey("AuthorId");
-
                     b.HasOne("IssueTrackingSystem.Data.Models.Category", "Category")
                         .WithMany("Tickets")
                         .HasForeignKey("CategoryId1");
+
+                    b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "User")
+                        .WithMany("Tickets")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("IssueTrackingSystem.Data.Models.UserTicket", b =>
+                {
+                    b.HasOne("IssueTrackingSystem.Data.Models.Ticket", "Ticket")
+                        .WithMany()
+                        .HasForeignKey("TicketId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
