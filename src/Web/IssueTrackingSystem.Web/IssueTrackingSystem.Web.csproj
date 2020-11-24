@@ -39,4 +39,10 @@
     <ProjectReference Include="..\IssueTrackingSystem.Web.Infrastructure\IssueTrackingSystem.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\IssueTrackingSystem.Web.ViewModels\IssueTrackingSystem.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Tickets\Create.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

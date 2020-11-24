@@ -23,14 +23,14 @@
 
         public virtual ApplicationUser User { get; set; }
 
-        public string CategoryId { get; set; }
+        public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
 
-        public virtual TicketStatus TicketStatus { get; set; }
+        public TicketStatus TicketStatus { get; set; }
 
-        public virtual TicketPriority TicketPriority { get; set; }
+        public TicketPriority TicketPriority { get; set; }
     }
 }

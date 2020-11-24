@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IssueTrackingSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201123220049_DbFix")]
-    partial class DbFix
+    [Migration("20201124220806_LastFixDb")]
+    partial class LastFixDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -327,10 +327,7 @@ namespace IssueTrackingSystem.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CategoryId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CategoryId1")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
@@ -362,7 +359,7 @@ namespace IssueTrackingSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId1");
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("IsDeleted");
 
@@ -527,7 +524,9 @@ namespace IssueTrackingSystem.Data.Migrations
                 {
                     b.HasOne("IssueTrackingSystem.Data.Models.Category", "Category")
                         .WithMany("Tickets")
-                        .HasForeignKey("CategoryId1");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "User")
                         .WithMany("Tickets")

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace IssueTrackingSystem.Data.Migrations
 {
-    public partial class DbFix : Migration
+    public partial class LastFixDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -265,8 +265,7 @@ namespace IssueTrackingSystem.Data.Migrations
                     Title = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: true),
-                    CategoryId = table.Column<string>(nullable: true),
-                    CategoryId1 = table.Column<int>(nullable: true),
+                    CategoryId = table.Column<int>(nullable: false),
                     TicketStatus = table.Column<int>(nullable: false),
                     TicketPriority = table.Column<int>(nullable: false)
                 },
@@ -274,8 +273,8 @@ namespace IssueTrackingSystem.Data.Migrations
                 {
                     table.PrimaryKey("PK_Tickets", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tickets_Categories_CategoryId1",
-                        column: x => x.CategoryId1,
+                        name: "FK_Tickets_Categories_CategoryId",
+                        column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -442,9 +441,9 @@ namespace IssueTrackingSystem.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tickets_CategoryId1",
+                name: "IX_Tickets_CategoryId",
                 table: "Tickets",
-                column: "CategoryId1");
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tickets_IsDeleted",

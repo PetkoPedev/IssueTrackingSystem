@@ -9,6 +9,8 @@
     using IssueTrackingSystem.Data.Repositories;
     using IssueTrackingSystem.Data.Seeding;
     using IssueTrackingSystem.Services.Data;
+    using IssueTrackingSystem.Services.Data.Category;
+    using IssueTrackingSystem.Services.Data.Ticket;
     using IssueTrackingSystem.Services.Mapping;
     using IssueTrackingSystem.Services.Messaging;
     using IssueTrackingSystem.Web.ViewModels;
@@ -64,6 +66,9 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+
+            services.AddTransient<ITicketsService, TicketsService>();
+            services.AddTransient<ICategoriesService, CategoriesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
