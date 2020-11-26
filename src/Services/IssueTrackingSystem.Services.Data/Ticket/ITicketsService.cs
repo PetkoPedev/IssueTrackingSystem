@@ -9,6 +9,6 @@
 
     public interface ITicketsService
     {
-        Task<int> CreateAsync(string title, string content, string userId, int categoryId, TicketStatus ticketStatus, TicketPriority ticketPriority);
+        Task<int> CreateAsync(string title, string content, int categoryId, TicketStatus ticketStatus, TicketPriority ticketPriority);
     }
 }

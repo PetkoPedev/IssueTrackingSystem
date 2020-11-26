@@ -19,6 +19,7 @@ namespace IssueTrackingSystem.Data.Models
             this.Tickets = new HashSet<Ticket>();
             this.Comments = new HashSet<Comment>();
             this.Notes = new HashSet<Note>();
+            this.Articles = new HashSet<Article>();
         }
 
         // Audit info

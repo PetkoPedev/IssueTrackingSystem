@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Text;
-
+    using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Data.Models.Enums;
 
     public class CreateTicketInputModel
@@ -17,8 +17,10 @@
 
         public int CategoryId { get; set; }
 
-        public IEnumerable<TicketStatusDropDownViewModel> TicketStatus { get; set; }
+        [Required]
+        public TicketStatus TicketStatus { get; set; }
 
-        public IEnumerable<TicketPriorityDropDownViewModel> TicketPriority { get; set; }
+        [Required]
+        public TicketPriority TicketPriority { get; set; }
     }
 }

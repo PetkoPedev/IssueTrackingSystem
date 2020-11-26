@@ -18,13 +18,12 @@
             this.ticketRepository = ticketRepository;
         }
 
-        public async Task<int> CreateAsync(string title, string content, string userId, int categoryId, TicketStatus ticketStatus, TicketPriority ticketPriority)
+        public async Task<int> CreateAsync(string title, string content, int categoryId, TicketStatus ticketStatus, TicketPriority ticketPriority)
         {
             var ticket = new Ticket
             {
                 Title = title,
                 Content = content,
-                UserId = userId,
                 CategoryId = categoryId,
                 TicketStatus = ticketStatus,
                 TicketPriority = ticketPriority,
