@@ -38,6 +38,8 @@
 
         public DbSet<UserTicket> UserTickets { get; set; }
 
+        public DbSet<CategoryTicket> CategoryTickets { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

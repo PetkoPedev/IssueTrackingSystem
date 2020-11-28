@@ -8,11 +8,11 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    public class UserTicketConfiguration : IEntityTypeConfiguration<UserTicket>
+    public class CategoryTicketConfiguration : IEntityTypeConfiguration<CategoryTicket>
     {
-        public void Configure(EntityTypeBuilder<UserTicket> userTicket)
+        public void Configure(EntityTypeBuilder<CategoryTicket> categoryTicket)
         {
-            userTicket.HasKey(ut => new { ut.UserId, ut.TicketId });
+            categoryTicket.HasKey(ct => new { ct.CategoryId, ct.TicketId });
         }
     }
 }

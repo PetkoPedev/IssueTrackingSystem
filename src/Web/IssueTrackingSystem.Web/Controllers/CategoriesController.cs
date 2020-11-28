@@ -22,5 +22,29 @@
             var viewModel = this.categoriesService.GetByName<CategoryViewModel>(name);
             return this.View(viewModel);
         }
+
+        public IActionResult GetAll()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        public IActionResult GetAll(int id)
+        {
+            var viewModel = this.categoriesService.GetAll<AllCategoriesViewModel>(id);
+            return this.View(viewModel);
+        }
+
+        public IActionResult Create()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(string name)
+        {
+            var viewModel = this.categoriesService.CreateAsync(name);
+            return this.View(viewModel);
+        }
     }
 }
