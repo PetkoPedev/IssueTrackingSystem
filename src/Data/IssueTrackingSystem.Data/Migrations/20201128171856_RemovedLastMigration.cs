@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace IssueTrackingSystem.Data.Migrations
 {
-    public partial class LastFixDb : Migration
+    public partial class RemovedLastMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

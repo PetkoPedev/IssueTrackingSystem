@@ -210,21 +210,6 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("IssueTrackingSystem.Data.Models.CategoryTicket", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TicketId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoryId", "TicketId");
-
-                    b.HasIndex("TicketId");
-
-                    b.ToTable("CategoryTickets");
-                });
-
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Comment", b =>
                 {
                     b.Property<int>("Id")
@@ -511,21 +496,6 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "User")
                         .WithMany("Articles")
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("IssueTrackingSystem.Data.Models.CategoryTicket", b =>
-                {
-                    b.HasOne("IssueTrackingSystem.Data.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("IssueTrackingSystem.Data.Models.Ticket", "Ticket")
-                        .WithMany()
-                        .HasForeignKey("TicketId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Comment", b =>
