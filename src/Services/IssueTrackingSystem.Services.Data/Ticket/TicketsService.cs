@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+
     using IssueTrackingSystem.Data.Common.Repositories;
     using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Data.Models.Enums;
@@ -25,8 +26,8 @@
                 Title = title,
                 Content = content,
                 CategoryId = categoryId,
-                TicketStatus = ticketStatus,
-                TicketPriority = ticketPriority,
+                TicketStatus = TicketStatus.Open,
+                TicketPriority = TicketPriority.Low,
             };
 
             await this.ticketRepository.AddAsync(ticket);
