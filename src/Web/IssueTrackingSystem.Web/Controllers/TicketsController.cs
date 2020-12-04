@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Services.Data.Category;
     using IssueTrackingSystem.Services.Data.Ticket;
@@ -12,7 +13,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    public class TicketsController : Controller
+    public class TicketsController : BaseController
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ITicketsService ticketsService;

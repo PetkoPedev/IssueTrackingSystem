@@ -5,6 +5,7 @@
     using System.IO;
     using System.Threading.Tasks;
 
+    using CommandLine;
     using IssueTrackingSystem.Data;
     using IssueTrackingSystem.Data.Common;
     using IssueTrackingSystem.Data.Common.Repositories;
@@ -13,9 +14,6 @@
     using IssueTrackingSystem.Data.Seeding;
     using IssueTrackingSystem.Services.Data;
     using IssueTrackingSystem.Services.Messaging;
-
-    using CommandLine;
-
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;

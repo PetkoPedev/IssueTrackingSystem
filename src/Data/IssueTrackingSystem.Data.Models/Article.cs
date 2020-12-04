@@ -1,10 +1,11 @@
-﻿using IssueTrackingSystem.Data.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace IssueTrackingSystem.Data.Models
+﻿namespace IssueTrackingSystem.Data.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+    using IssueTrackingSystem.Data.Common.Models;
+
     public class Article : BaseDeletableModel<int>
     {
         public string ArticleName { get; set; }

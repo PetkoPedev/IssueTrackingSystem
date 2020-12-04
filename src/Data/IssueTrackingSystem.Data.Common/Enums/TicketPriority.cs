@@ -1,4 +1,4 @@
-﻿namespace IssueTrackingSystem.Data.Models.Enums
+﻿namespace IssueTrackingSystem.Data.Common.Enums
 {
     using System;
     using System.Collections.Generic;

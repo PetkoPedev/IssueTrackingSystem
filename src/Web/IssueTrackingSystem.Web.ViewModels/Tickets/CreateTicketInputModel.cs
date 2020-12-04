@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Text;
+    using IssueTrackingSystem.Data.Common.Enums;
     using IssueTrackingSystem.Data.Models;
-    using IssueTrackingSystem.Data.Models.Enums;
 
     public class CreateTicketInputModel
     {

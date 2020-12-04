@@ -4,11 +4,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using IssueTrackingSystem.Services.Data.Category;
     using IssueTrackingSystem.Web.ViewModels.Categories;
     using Microsoft.AspNetCore.Mvc;
 
-    public class CategoriesController : Controller
+    public class CategoriesController : BaseController
     {
         private readonly ICategoriesService categoriesService;
 

@@ -5,10 +5,9 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-
+    using IssueTrackingSystem.Data.Common.Enums;
     using IssueTrackingSystem.Data.Common.Repositories;
     using IssueTrackingSystem.Data.Models;
-    using IssueTrackingSystem.Data.Models.Enums;
 
     public class TicketsService : ITicketsService
     {

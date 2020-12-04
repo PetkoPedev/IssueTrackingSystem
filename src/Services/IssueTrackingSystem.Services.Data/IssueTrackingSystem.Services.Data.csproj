@@ -13,6 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.9" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.205" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
@@ -21,6 +23,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\IssueTrackingSystem.Data.Common\IssueTrackingSystem.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\IssueTrackingSystem.Data.Models\IssueTrackingSystem.Data.Models.csproj" />
+    <ProjectReference Include="..\..\IssueTrackingSystem.Common\IssueTrackingSystem.Common.csproj" />
+    <ProjectReference Include="..\..\Web\IssueTrackingSystem.Web.ViewModels\IssueTrackingSystem.Web.ViewModels.csproj" />
     <ProjectReference Include="..\IssueTrackingSystem.Services.Mapping\IssueTrackingSystem.Services.Mapping.csproj" />
   </ItemGroup>
 

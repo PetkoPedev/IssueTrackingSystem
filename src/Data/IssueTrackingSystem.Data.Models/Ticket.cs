@@ -5,8 +5,8 @@
     using System.Net.Mime;
     using System.Text;
 
+    using IssueTrackingSystem.Data.Common.Enums;
     using IssueTrackingSystem.Data.Common.Models;
-    using IssueTrackingSystem.Data.Models.Enums;
 
     public class Ticket : BaseDeletableModel<int>
     {
