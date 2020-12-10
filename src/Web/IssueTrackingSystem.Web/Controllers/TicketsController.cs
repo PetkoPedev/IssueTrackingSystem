@@ -65,9 +65,10 @@
             return this.View(viewModel);
         }
 
-        // public IActionResult ById(int id)
-        // {
-        //     var ticket = this.ticketsService.GetById<SingleTicketViewModel>
-        // }
+        public IActionResult ById(int id)
+        {
+            var ticket = this.ticketsService.GetById<SingleTicketViewModel>(id);
+            return this.View(ticket);
+        }
     }
 }
