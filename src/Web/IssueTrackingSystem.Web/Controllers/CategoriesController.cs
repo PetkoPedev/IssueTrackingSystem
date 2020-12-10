@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using IssueTrackingSystem.Services.Data.Category;
+    using IssueTrackingSystem.Services.Data.Categories;
     using IssueTrackingSystem.Web.ViewModels.Categories;
     using Microsoft.AspNetCore.Mvc;
 

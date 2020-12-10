@@ -2,6 +2,10 @@
 {
     public class IndexViewModel
     {
-        public int SettingsCount { get; set; }
+        public int TicketsCount { get; set; }
+
+        public int NotesCount { get; set; }
+
+        public int ArticlesCount { get; set; }
     }
 }

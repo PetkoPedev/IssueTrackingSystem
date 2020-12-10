@@ -1,0 +1,24 @@
+﻿@model IssueTrackingSystem.Web.ViewModels.Tickets.TicketsListViewModel
+@{
+    this.ViewData["Title"] = "All Tickets";
+}
+
+<h1>@this.ViewData["Title"]</h1>
+<hr />
+
+<!-- Basic Card Example -->
+<div class="row">
+    @foreach (var ticket in this.Model.Tickets)
+    {
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">@ticket.Title</h6>
+            </div>
+            <div class="card-body">
+                @ticket.CategoryName
+            </div>
+        </div>
+    }
+</div>
+<hr />
+<partial name="_PagingPartial" model="@Model" />

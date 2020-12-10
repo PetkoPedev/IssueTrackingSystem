@@ -4,4 +4,15 @@
 }
 
 <h1>@this.ViewData["Title"]</h1>
-Settings: @this.Model.SettingsCount
+
+<div class="text-center">
+    <h2 class="display-4">Your current system stats:</h2>
+    <div class="col-md-4 offset-md-4">
+        <p>You currently have:</p>
+        <ul class="list-group">
+            <li class="list-group-item bg-info">All Tickets: @Model.TicketsCount</li>
+            <li class="list-group-item bg-light">All Notes Created by Users: @Model.NotesCount</li>
+            <li class="list-group-item bg-info">All Articles Created by Users: @Model.ArticlesCount</li>
+        </ul>
+    </div>
+</div>

@@ -34,6 +34,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\IssueTrackingSystem.Data.Models\IssueTrackingSystem.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\IssueTrackingSystem.Data\IssueTrackingSystem.Data.csproj" />
+    <ProjectReference Include="..\..\IssueTrackingSystem.Common\IssueTrackingSystem.Common.csproj" />
     <ProjectReference Include="..\..\Services\IssueTrackingSystem.Services.Data\IssueTrackingSystem.Services.Data.csproj" />
     <ProjectReference Include="..\..\Services\IssueTrackingSystem.Services.Mapping\IssueTrackingSystem.Services.Mapping.csproj" />
     <ProjectReference Include="..\..\Services\IssueTrackingSystem.Services.Messaging\IssueTrackingSystem.Services.Messaging.csproj" />
@@ -53,6 +54,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Views\Shared\_Layout.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Views\Shared\_LoginPartial.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Views\Tickets\Create.cshtml">

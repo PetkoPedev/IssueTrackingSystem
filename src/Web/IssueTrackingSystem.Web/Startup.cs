@@ -9,7 +9,8 @@
     using IssueTrackingSystem.Data.Repositories;
     using IssueTrackingSystem.Data.Seeding;
     using IssueTrackingSystem.Services.Data;
-    using IssueTrackingSystem.Services.Data.Category;
+    using IssueTrackingSystem.Services.Data.Categories;
+    using IssueTrackingSystem.Services.Data.Counts;
     using IssueTrackingSystem.Services.Data.Ticket;
     using IssueTrackingSystem.Services.Mapping;
     using IssueTrackingSystem.Services.Messaging;
@@ -69,6 +70,7 @@
 
             services.AddTransient<ITicketsService, TicketsService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<IGetCountsService, GetCountsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

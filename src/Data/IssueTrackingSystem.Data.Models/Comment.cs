@@ -1,7 +1,7 @@
-﻿using IssueTrackingSystem.Data.Common.Models;
-
-namespace IssueTrackingSystem.Data.Models
+﻿namespace IssueTrackingSystem.Data.Models
 {
+    using IssueTrackingSystem.Data.Common.Models;
+
     public class Comment : BaseDeletableModel<int>
     {
         public int TicketId { get; set; }

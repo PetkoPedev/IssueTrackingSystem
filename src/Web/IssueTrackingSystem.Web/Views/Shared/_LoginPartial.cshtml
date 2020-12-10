@@ -8,20 +8,80 @@
     @if (this.SignInManager.IsSignedIn(this.User))
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @(this.User.Identity.Name)!</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class="fas fa-user-tie"></i><span>Hello @(this.User.Identity.Name)!</span></a>
         </li>
         if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
         {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">AdminAdmin</a>
+            <div class="sidebar-heading">
+                Admin Area
+            </div>
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">
+                    <i class="fas fa-fw fa-tachometer-alt"></i><span>Dashboard</span></a>
             </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTickets"
+                    aria-expanded="true" aria-controls="collapseTickets">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>Tickets</span>
+                </a>
+                <div id="collapseTickets" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Ticket Actions:</h6>
+                        <a class="collapse-item" href="buttons.html"><i class="fas fa-plus"></i><span> Add Ticket</span></a>
+                        <a class="collapse-item" href="buttons.html"><i class="fas fa-edit"></i><span> Edit Ticket</span></a>
+                        <a class="collapse-item" href="cards.html"><i class="fas fa-minus"></i><span> Delete Ticket</span></a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategories"
+                    aria-expanded="true" aria-controls="collapseCategories">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Categories</span>
+                </a>
+                <div id="collapseCategories" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Ticket Actions:</h6>
+                        <a class="collapse-item" href="buttons.html"><i class="fas fa-plus"></i><span> Add Category</span></a>
+                        <a class="collapse-item" href="buttons.html"><i class="fas fa-edit"></i><span> Edit Category</span></a>
+                        <a class="collapse-item" href="cards.html"><i class="fas fa-minus"></i><span> Delete Category</span></a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
+                    aria-expanded="true" aria-controls="collapseUsers">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Users</span>
+                </a>
+                <div id="collapseUsers" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">User Actions:</h6>
+                        <a class="collapse-item" href="buttons.html"><i class="fas fa-plus"></i><span> Add User</span></a>
+                        <a class="collapse-item" href="buttons.html"><i class="fas fa-edit"></i><span> Edit User Info</span></a>
+                        <a class="collapse-item" href="cards.html"><i class="fas fa-plus"></i><span> Delete User</span></a>
+                    </div>
+                </div>
+            </li>
+
         }
         <li class="nav-item">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button id="logout" type="submit" class="nav-link btn btn-link">
+                    <i class="fas fa-sign-out-alt"></i><span>Logout</span>
+                </button>
             </form>
         </li>
-    }
+        }
     else
     {
         <li class="nav-item">

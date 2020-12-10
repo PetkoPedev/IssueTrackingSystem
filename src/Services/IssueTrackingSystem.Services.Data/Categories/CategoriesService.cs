@@ -1,10 +1,11 @@
-﻿namespace IssueTrackingSystem.Services.Data.Category
+﻿namespace IssueTrackingSystem.Services.Data.Categories
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+
     using IssueTrackingSystem.Data.Common.Repositories;
     using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Services.Mapping;
@@ -31,16 +32,16 @@
             return category.Id;
         }
 
-        public IEnumerable<T> GetAll<T>(int? count = null)
+        public IEnumerable<TCategory> GetAll<TCategory>(int? count = null)
         {
-            IQueryable<Category> allCategories = this.categoriesRepository.All().OrderBy(x => x.Name);
+            IQueryable<TCategory> allCategories = (IQueryable<TCategory>)this.categoriesRepository.All().OrderBy(x => x.Name);
 
             if (count.HasValue)
             {
                 allCategories = allCategories.Take(count.Value);
             }
 
-            return allCategories.To<T>().ToList();
+            return allCategories.To<TCategory>().ToList();
         }
 
         public T GetByName<T>(string name)
