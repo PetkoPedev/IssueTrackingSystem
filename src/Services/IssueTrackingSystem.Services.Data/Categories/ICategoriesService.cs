@@ -9,10 +9,12 @@
 
     public interface ICategoriesService
     {
-        IEnumerable<TCategory> GetAll<TCategory>(int? count = null);
+        IEnumerable<T> GetAll<T>(int? count = null);
 
-        TCategory GetByName<TCategory>(string name);
+        T GetByName<T>(string name);
 
         Task<int> CreateAsync(string name);
+
+        IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
     }
 }

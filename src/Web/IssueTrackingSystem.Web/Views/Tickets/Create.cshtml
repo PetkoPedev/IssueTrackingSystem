@@ -2,6 +2,7 @@
 @using IssueTrackingSystem.Data.Common.Enums;
 @{ 
     this.ViewData["Title"] = "Creating ticket";
+    var categoryItems = Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
 <h1>Creating ticket</h1>
 <form method="post" class="col-md-6 offset-3">
@@ -18,7 +19,7 @@
     </div>
     <div class="form-group">
         <label asp-for="CategoryId"></label>
-        <input asp-for="CategoryId" class="form-control" />
+        <select asp-for="CategoryId" class="form-control" asp-items="categoryItems"></select>
         <span asp-validation-for="CategoryId" class="text-danger"></span>
     </div>
     <div class="form-group">

@@ -1,13 +1,14 @@
 ﻿namespace IssueTrackingSystem.Services.Data.Articles
 {
-    using IssueTrackingSystem.Data.Common.Repositories;
-    using IssueTrackingSystem.Data.Models;
-    using IssueTrackingSystem.Services.Mapping;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+
+    using IssueTrackingSystem.Data.Common.Repositories;
+    using IssueTrackingSystem.Data.Models;
+    using IssueTrackingSystem.Services.Mapping;
 
     public class ArticlesService : IArticlesService
     {
@@ -48,6 +49,15 @@
                 .FirstOrDefault();
 
             return article;
+        }
+
+        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12)
+        {
+            var articles = this.articleRepository.AllAsNoTracking()
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
+                .To<T>().ToList();
+            return articles;
         }
     }
 }

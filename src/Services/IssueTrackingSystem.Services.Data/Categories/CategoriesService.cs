@@ -32,16 +32,25 @@
             return category.Id;
         }
 
-        public IEnumerable<TCategory> GetAll<TCategory>(int? count = null)
+        public IEnumerable<T> GetAll<T>(int? count = null)
         {
-            IQueryable<TCategory> allCategories = (IQueryable<TCategory>)this.categoriesRepository.All().OrderBy(x => x.Name);
+            IQueryable<T> allCategories = (IQueryable<T>)this.categoriesRepository.All().OrderBy(x => x.Name);
 
             if (count.HasValue)
             {
                 allCategories = allCategories.Take(count.Value);
             }
 
-            return allCategories.To<TCategory>().ToList();
+            return allCategories.To<T>().ToList();
+        }
+
+        public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
+        {
+            return this.categoriesRepository.All().Select(x => new
+            {
+                x.Id,
+                x.Name,
+            }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
         }
 
         public T GetByName<T>(string name)

@@ -14,5 +14,7 @@
         int GetCount();
 
         Article GetById<T>(int id);
+
+        IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12);
     }
 }

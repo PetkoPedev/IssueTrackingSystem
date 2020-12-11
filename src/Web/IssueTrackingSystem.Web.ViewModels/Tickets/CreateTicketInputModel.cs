@@ -17,6 +17,8 @@
 
         public int CategoryId { get; set; }
 
+        public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
+
         [Required]
         public TicketStatus TicketStatus { get; set; }
 
