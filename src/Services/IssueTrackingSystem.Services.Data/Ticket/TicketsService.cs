@@ -1,4 +1,4 @@
-﻿namespace IssueTrackingSystem.Services.Data.Ticket
+﻿    namespace IssueTrackingSystem.Services.Data.Ticket
 {
     using System;
     using System.Collections.Generic;

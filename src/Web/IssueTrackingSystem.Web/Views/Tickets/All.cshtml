@@ -7,18 +7,49 @@
 <hr />
 
 <!-- Basic Card Example -->
-<div class="row">
-    @foreach (var ticket in this.Model.Tickets)
-    {
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">@ticket.CategoryName</h6>
-            </div>
-            <div class="card-body">
-                <a asp-action="ById" asp-route-id="@ticket.Id">@ticket.Title</a>
-            </div>
+<div class="shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">All Tickets</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Priority</th>
+                    </tr>
+                </thead>
+                @foreach (var ticket in this.Model.Tickets)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@ticket.Id</td>
+                            <td><a asp-action="ById" asp-route-id="@ticket.Id">@ticket.Title</a></td>
+                            <td>@ticket.CategoryName</td>
+                            <td>Status</td>
+                            <td>Priority</td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
         </div>
-    }
+    </div>
+    @*@foreach (var ticket in this.Model.Tickets)
+        {
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">@ticket.CategoryName</h6>
+                </div>
+                <div class="card-body">
+                    <a asp-action="ById" asp-route-id="@ticket.Id">@ticket.Title</a>
+                </div>
+            </div>
+        }*@
+    
 </div>
 <hr />
 <partial name="_PagingPartial" model="@Model" />

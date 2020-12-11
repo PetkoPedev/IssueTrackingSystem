@@ -52,6 +52,7 @@
             return this.Redirect("/");
         }
 
+        [Authorize]
         public IActionResult All(int id = 1)
         {
             const int ItemsPerPage = 4;
@@ -65,6 +66,7 @@
             return this.View(viewModel);
         }
 
+        [Authorize]
         public IActionResult ById(int id)
         {
             var ticket = this.ticketsService.GetById<SingleTicketViewModel>(id);

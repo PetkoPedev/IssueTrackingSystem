@@ -2,4 +2,18 @@
 @{ 
     this.ViewData["Title"] = Model.Title;
 }
-<h1>Single ticket by ID</h1>
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800">@Model.Title</h1>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary">@Model.Title</h5>
+        </div>
+        <div class="card-body">
+            @Model.Content
+        </div>
+        <h6 class="m-5 font-weight-bold text-primary">by: @Model.UserUserName</h6>
+    </div>
+
+</div>
