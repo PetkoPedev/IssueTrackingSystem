@@ -9,6 +9,7 @@
     using IssueTrackingSystem.Data.Common.Repositories;
     using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Services.Mapping;
+    using IssueTrackingSystem.Web.ViewModels.Articles;
 
     public class ArticlesService : IArticlesService
     {
@@ -19,7 +20,7 @@
             this.articleRepository = articleRepository;
         }
 
-        public async Task<int> CreateAsync(string articleName, string content, string userId, int categoryId)
+        public async Task<int> CreateAsync(string articleName, string content, int categoryId, string userId)
         {
             var article = new Article
             {
@@ -40,23 +41,31 @@
             return this.articleRepository.All().Count();
         }
 
-        public Article GetById<T>(int id)
+        public T GetById<T>(int id)
         {
             var article = this.articleRepository
                 .AllAsNoTracking()
                 .Where(x => x.Id == id)
-                .To<Article>()
+                .To<T>()
                 .FirstOrDefault();
 
             return article;
         }
 
-        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12)
+        public IEnumerable<ArticleInListViewModel> GetAll(int page, int itemsPerPage = 4)
         {
             var articles = this.articleRepository.AllAsNoTracking()
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
-                .To<T>().ToList();
+                .Select(x => new ArticleInListViewModel
+                {
+                    Id = x.Id,
+                    ArticleName = x.ArticleName,
+                    Content = x.Content,
+                    CategoryId = x.CategoryId,
+                    UserId = x.UserId,
+                }).ToList();
+
             return articles;
         }
     }

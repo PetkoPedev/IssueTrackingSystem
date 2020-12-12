@@ -8,13 +8,11 @@
     using IssueTrackingSystem.Services.Mapping;
     using IssueTrackingSystem.Web.ViewModels.Categories;
 
-    public class CreateArticleInputModel : IMapTo<Article>
+    public class CreateArticleInputModel
     {
         public string ArticleName { get; set; }
 
         public string Content { get; set; }
-
-        public string UserId { get; set; }
 
         public int CategoryId { get; set; }
 

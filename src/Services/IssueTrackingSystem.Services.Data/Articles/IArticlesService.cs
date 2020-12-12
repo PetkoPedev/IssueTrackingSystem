@@ -6,15 +6,16 @@
     using System.Threading.Tasks;
 
     using IssueTrackingSystem.Data.Models;
+    using IssueTrackingSystem.Web.ViewModels.Articles;
 
     public interface IArticlesService
     {
-        Task<int> CreateAsync(string articleName, string content, string userId, int categoryId);
+        Task<int> CreateAsync(string articleName, string content, int categoryId, string userId);
 
         int GetCount();
 
-        Article GetById<T>(int id);
+        T GetById<T>(int id);
 
-        IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12);
+        IEnumerable<ArticleInListViewModel> GetAll(int page, int itemsPerPage = 12);
     }
 }

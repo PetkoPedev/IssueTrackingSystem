@@ -41,21 +41,36 @@
         [Authorize]
         public async Task<IActionResult> Create(CreateArticleInputModel input)
         {
-            var user = this.userManager.GetUserAsync(this.User);
+            var user = await this.userManager.GetUserAsync(this.User);
             if (!this.ModelState.IsValid)
             {
                 input.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
                 return this.View(input);
             }
 
-            var article = await this.articlesService.CreateAsync(input.ArticleName, input.Content, input.UserId, input.CategoryId);
-            return this.View("/");
+            var article = await this.articlesService.CreateAsync(input.ArticleName, input.Content, input.CategoryId, user.Id);
+            return this.Redirect("/");
         }
 
         [Authorize]
-        public IActionResult GetAll(int id = 1)
+        public IActionResult All(int id = 1)
         {
-            return this.View();
+            const int ItemsPerPage = 4;
+            var viewModel = new ArticlesListViewModel
+            {
+                ItemsPerPage = ItemsPerPage,
+                PageNumber = id,
+                ItemsCount = this.articlesService.GetCount(),
+                Articles = this.articlesService.GetAll(id, ItemsPerPage),
+            };
+            return this.View(viewModel);
+        }
+
+        [Authorize]
+        public IActionResult ById(int id)
+        {
+            var article = this.articlesService.GetById<SingleArticleViewModel>(id);
+            return this.View(article);
         }
     }
 }
