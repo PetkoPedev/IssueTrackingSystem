@@ -1,9 +1,8 @@
 ﻿namespace IssueTrackingSystem.Web.ViewModels.Settings
 {
+    using AutoMapper;
     using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Services.Mapping;
-
-    using AutoMapper;
 
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {

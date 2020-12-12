@@ -38,7 +38,6 @@
             return this.Redirect("/");
         }
 
-
         public IActionResult CreateModerator()
         {
             var viewModel = new RegisterUserInputModel();

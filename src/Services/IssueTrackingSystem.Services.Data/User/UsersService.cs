@@ -20,7 +20,6 @@
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             RoleManager<IdentityRole> roleManager)
-
         {
             this.userManager = userManager;
             this.roleManager = roleManager;

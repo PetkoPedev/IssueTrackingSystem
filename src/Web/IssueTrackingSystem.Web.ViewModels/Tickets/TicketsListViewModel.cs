@@ -7,6 +7,5 @@
     public class TicketsListViewModel : PagingViewModel
     {
         public IEnumerable<TicketInListViewModel> Tickets { get; set; }
-
     }
 }

@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using IssueTrackingSystem.Services.Data.Notes;
     using Microsoft.AspNetCore.Mvc;
 

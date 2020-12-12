@@ -62,7 +62,7 @@
             {
                 ItemsPerPage = ItemsPerPage,
                 PageNumber = id,
-                TicketsCount = this.ticketsService.GetCount(),
+                ItemsCount = this.ticketsService.GetCount(),
                 Tickets = this.ticketsService.GetAll(id, ItemsPerPage),
             };
             return this.View(viewModel);

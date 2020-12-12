@@ -53,7 +53,7 @@
         }
 
         [Authorize]
-        public IActionResult GetAll()
+        public IActionResult GetAll(int id = 1)
         {
             return this.View();
         }

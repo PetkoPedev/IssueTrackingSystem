@@ -1,12 +1,13 @@
-﻿using IssueTrackingSystem.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IssueTrackingSystem.Data.Seeding
+﻿namespace IssueTrackingSystem.Data.Seeding
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using IssueTrackingSystem.Data.Models;
+
     public class CategoriesSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
