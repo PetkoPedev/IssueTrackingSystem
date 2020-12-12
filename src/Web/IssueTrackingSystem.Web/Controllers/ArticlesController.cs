@@ -30,6 +30,7 @@
             this.categoriesService = categoriesService;
         }
 
+        [Authorize]
         public IActionResult Create()
         {
             var viewModel = new CreateArticleInputModel();

@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
 
     using IssueTrackingSystem.Data.Models;
+    using IssueTrackingSystem.Web.ViewModels.Notes;
 
     public interface INotesService
     {
@@ -14,5 +15,7 @@
         T GetById<T>(int id);
 
         int GetCount();
+
+        IEnumerable<NoteInListViewModel> GetAll(int page, int itemsPerPage = 6);
     }
 }

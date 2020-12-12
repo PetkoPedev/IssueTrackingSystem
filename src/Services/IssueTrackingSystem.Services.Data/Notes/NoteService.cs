@@ -9,6 +9,7 @@
     using IssueTrackingSystem.Data.Common.Repositories;
     using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Services.Mapping;
+    using IssueTrackingSystem.Web.ViewModels.Notes;
 
     public class NoteService : INotesService
     {
@@ -47,6 +48,22 @@
         public int GetCount()
         {
             return this.noteRepository.All().Count();
+        }
+
+        public IEnumerable<NoteInListViewModel> GetAll(int page, int itemsPerPage = 6)
+        {
+            var notes = this.noteRepository.AllAsNoTracking()
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
+                .Select(x => new NoteInListViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Content = x.Content,
+                    AuthorId = x.AuthorId,
+                }).ToList();
+
+            return notes;
         }
     }
 }
