@@ -40,7 +40,7 @@
 
         [HttpPost]
         [Authorize]
-        public IActionResult GetAll(int id)
+        public IActionResult All(int id)
         {
             var viewModel = this.categoriesService.GetAll<AllCategoriesViewModel>(id);
             return this.View(viewModel);
@@ -64,7 +64,7 @@
             }
 
             var viewModel = await this.categoriesService.CreateAsync(input.Name);
-            return this.Redirect("/");
+            return this.RedirectToAction(nameof(this.All));
         }
     }
 }

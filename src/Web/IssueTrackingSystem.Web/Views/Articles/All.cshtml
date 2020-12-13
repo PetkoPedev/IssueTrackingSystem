@@ -1,0 +1,51 @@
+﻿@model IssueTrackingSystem.Web.ViewModels.Articles.ArticlesListViewModel
+@{
+    this.ViewData["Title"] = "All Articles";
+}
+
+<h1>@this.ViewData["Title"]</h1>
+<hr />
+
+<!-- Basic Card Example -->
+<div class="shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">All Tickets</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Category</th>
+                    </tr>
+                </thead>
+                @foreach (var article in this.Model.Articles)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@article.Id</td>
+                            <td><a asp-action="ById" asp-route-id="@article.Id">@article.ArticleName</a></td>
+                            <td>@article.ArticleName</td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        </div>
+    </div>
+    @*@foreach (var ticket in this.Model.Tickets)
+        {
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">@ticket.CategoryName</h6>
+                </div>
+                <div class="card-body">
+                    <a asp-action="ById" asp-route-id="@ticket.Id">@ticket.Title</a>
+                </div>
+            </div>
+        }*@
+
+</div>
+<hr />
+<partial name="_PagingPartial" model="@Model" />

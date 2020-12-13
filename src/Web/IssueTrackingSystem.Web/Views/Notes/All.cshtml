@@ -1,0 +1,20 @@
+﻿@model IssueTrackingSystem.Web.ViewModels.Notes.NotesListViewModel
+@{ 
+    this.ViewData["Title"] = "All your notes.";
+}
+<h1>@this.ViewData["Title"]</h1>
+<hr />
+<div class="row">
+    @foreach (var note in this.Model.Notes)
+    {
+        <div class="card shadow mb-4" style="width: 15rem;">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"><a asp-action="ById" asp-route-id="@note.Id">@note.Name</a></h6>
+            </div>
+            <div class="card-body">
+                @note.Content
+            </div>
+        </div>
+    }
+</div>
+<partial name="_PagingPartial" model="@Model" />

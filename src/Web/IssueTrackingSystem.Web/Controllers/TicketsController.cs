@@ -51,7 +51,7 @@
 
             var ticketId = await this.ticketsService.CreateAsync(input.Title, input.Content, input.CategoryId, input.TicketStatus, input.TicketPriority, user.Id);
 
-            return this.Redirect("/");
+            return this.RedirectToAction(nameof(this.All));
         }
 
         [Authorize]
