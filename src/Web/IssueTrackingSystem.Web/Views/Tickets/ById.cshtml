@@ -1,5 +1,5 @@
 ﻿@model IssueTrackingSystem.Web.ViewModels.Tickets.SingleTicketViewModel
-@{ 
+@{
     this.ViewData["Title"] = Model.Title;
 }
 <div class="container-fluid">
@@ -11,9 +11,48 @@
             <h5 class="m-0 font-weight-bold text-primary">@Model.Title</h5>
         </div>
         <div class="card-body">
-            @Model.Content
+            @Html.Raw(Model.SanitizedContent)
         </div>
         <h6 class="m-5 font-weight-bold text-primary">by: @Model.UserUserName</h6>
+        <div class="px-4 pt-3"><button type="button" class="btn btn-primary" onclick="showAddCommentForm()"><i class="fa fa-plus"></i>&nbsp; Reply</button></div>
     </div>
-
 </div>
+
+@foreach (var comment in this.Model.Comments)
+{
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">@comment.UserUserName</h1>
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                @Html.Raw(comment.SanitizedContent)
+            </div>
+            <h6 class="m-5 font-weight-bold text-primary">by: @comment.UserUserName</h6>
+            <div class="px-4 pt-3"><button type="button" class="btn btn-primary" onclick="showAddCommentForm()"><i class="fa fa-plus"></i>&nbsp; Reply</button></div>
+        </div>
+    </div>
+}
+
+<div id="AddCommentForm" style="display: none">
+    <form asp-controller="Comments" asp-action="Create" method="post">
+        <div>
+            <input type="hidden" name="TicketId" value="@this.Model.Id" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Content"></label>
+            <textarea id="tinymcetextarea" asp-for="Content" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+        <div>
+            <input type="submit" class="btn btn-primary" value="Add comment" />
+        </div>
+    </form>
+</div>
+@section Scripts{
+    <script>
+        function showAddCommentForm() {
+            $("#AddCommentForm").toggle();
+        }
+    </script>
+}

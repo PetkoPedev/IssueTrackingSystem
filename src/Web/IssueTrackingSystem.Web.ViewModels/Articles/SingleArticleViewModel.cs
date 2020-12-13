@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
-
+    using Ganss.XSS;
     using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Services.Mapping;
 
@@ -12,6 +12,8 @@
         public string ArticleName { get; set; }
 
         public string Content { get; set; }
+
+        public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Content);
 
         public string UserId { get; set; }
 

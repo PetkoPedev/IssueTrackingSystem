@@ -31,7 +31,7 @@
         {
             var userId = this.userManager.GetUserId(this.User);
             await this.commentsService.CreateAsync(input.TicketId, userId, input.Content);
-            return this.Redirect("/");
+            return this.RedirectToAction("ById", "Tickets", new { id = input.TicketId });
         }
     }
 }

@@ -7,7 +7,7 @@
 
     public interface ICommentsService
     {
-        Task<int> CreateAsync(int ticketId, string userId, string content);
+        Task<int> CreateAsync(int ticketId, string userId, string content, int? parentId = null);
 
         bool IsInTicketId(int commentId, int ticketId);
     }
