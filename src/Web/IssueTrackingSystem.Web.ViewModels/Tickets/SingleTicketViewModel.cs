@@ -17,6 +17,8 @@
 
         public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Content);
 
+        public DateTime CreatedOn { get; set; }
+
         public string UserId { get; set; }
 
         public string UserUserName { get; set; }

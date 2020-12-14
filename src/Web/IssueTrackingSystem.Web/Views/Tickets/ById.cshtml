@@ -2,57 +2,120 @@
 @{
     this.ViewData["Title"] = Model.Title;
 }
-<div class="container-fluid">
-
+@*
+    <!--<div class="container-fluid">-->
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">@Model.Title</h1>
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h5 class="m-0 font-weight-bold text-primary">@Model.Title</h5>
-        </div>
-        <div class="card-body">
-            @Html.Raw(Model.SanitizedContent)
-        </div>
-        <h6 class="m-5 font-weight-bold text-primary">by: @Model.UserUserName</h6>
-        <div class="px-4 pt-3"><button type="button" class="btn btn-primary" onclick="showAddCommentForm()"><i class="fa fa-plus"></i>&nbsp; Reply</button></div>
-    </div>
-</div>
-
-@foreach (var comment in this.Model.Comments)
-{
-    <div class="container-fluid">
-
-        <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">@comment.UserUserName</h1>
+    <!--<h1 class="h3 mb-4 text-gray-800"></h1>
         <div class="card shadow mb-4">
-            <div class="card-body">
-                @Html.Raw(comment.SanitizedContent)
+            <div class="card-header py-3">
+                <h5 class="m-0 font-weight-bold text-primary"></h5>
             </div>
-            <h6 class="m-5 font-weight-bold text-primary">by: @comment.UserUserName</h6>
+            <div class="card-body">
+
+            </div>
+            <h6 class="m-5 font-weight-bold text-primary">by: @Model.UserUserName</h6>
             <div class="px-4 pt-3"><button type="button" class="btn btn-primary" onclick="showAddCommentForm()"><i class="fa fa-plus"></i>&nbsp; Reply</button></div>
         </div>
     </div>
-}
 
-<div id="AddCommentForm" style="display: none">
-    <form asp-controller="Comments" asp-action="Create" method="post">
-        <div>
-            <input type="hidden" name="TicketId" value="@this.Model.Id" />
+
+    {
+        <div class="container-fluid">-->
+    <!-- Page Heading -->
+    <!--<h1 class="h3 mb-4 text-gray-800">@comment.UserUserName</h1>
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    @Html.Raw(comment.SanitizedContent)
+                </div>
+
+                <div class="px-4 pt-3"><button type="button" class="btn btn-primary" onclick="showAddCommentForm()"><i class="fa fa-plus"></i>&nbsp; Reply</button></div>
+            </div>
         </div>
+    }
+
+
+    }-->*@
+<div class="container-fluid mt-100">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="media flex-wrap w-100 align-items-center">
+                        <div class="media-body ml-3">
+                            <a asp-controller="Tickets" asp-action="ById"><h5>@Model.Title</h5></a>
+                            <div class="text-muted small ml-3">
+                                <div>Ticket created on: <strong>@Model.CreatedOn</strong></div>
+                            </div>
+                        </div>
+                        <div class="px-4 pt-3 float-right"> <button type="button" class="btn btn-primary float-right" onclick="showAddCommentForm(0)"><i class="fa fa-plus"></i>&nbsp; Reply</button> </div>
+                        <div class="clearfix"></div>
+                        
+                    </div>
+                </div>
+                <div class="card-body">
+                    @Html.Raw(Model.SanitizedContent)
+                    @foreach (var comment in this.Model.Comments)
+                    {
+                        <div class="container-fluid mt-100">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card mb-4">
+                                        <div class="card-header">
+                                            <div class="media flex-wrap w-100 align-items-center">
+                                                <div class="media-body ml-3">
+                                                    <a asp-controller="Tickets" asp-action="ById"><h5>@comment.UserUserName</h5></a>
+                                                    <div class="text-muted small ml-3">
+                                                        <div>Ticket created on: <strong>@comment.CreatedOn</strong></div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <article>
+                                                @Html.Raw(comment.SanitizedContent)
+                                            </article>
+                                        </div>
+                                        <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
+                                            <div class="text-muted small ml-3">
+                                                <div class="px-4 pt-3"> <button type="button" class="btn btn-secondary float-right" onclick="showAddCommentForm(@comment.Id)"><i class="fa fa-plus"></i>&nbsp; Answer</button> </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <form method="post" asp-controller="Comments" asp-action="Create" id="AddCommentForm" style="display: none">
+        <input type="hidden" name="ParentId" value="0" />
+        <input type="hidden" name="TicketId" value="@this.Model.Id" />
         <div class="form-group">
             <label asp-for="Content"></label>
-            <textarea id="tinymcetextarea" asp-for="Content" class="form-control" rows="5"></textarea>
+            <textarea asp-for="Content" class="form-control" rows="5"></textarea>
             <span asp-validation-for="Content" class="text-danger"></span>
         </div>
         <div>
-            <input type="submit" class="btn btn-primary" value="Add comment" />
+            <input type="submit" class="btn btn-secondary" value="Add comment" />
         </div>
     </form>
 </div>
+
 @section Scripts{
     <script>
-        function showAddCommentForm() {
+        function showAddCommentForm(parentId) {
+            $("#AddCommentForm input[name='ParentId']").val(parentId);
             $("#AddCommentForm").toggle();
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $("#AddCommentForm").offset().top
+            }, 2000);
         }
     </script>
 }

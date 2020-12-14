@@ -36,9 +36,9 @@
 
         public bool IsInTicketId(int commentId, int ticketId)
         {
-            var ticketPostId = this.commentsRepository.All().Where(x => x.Id == commentId)
+            var commentTicketId = this.commentsRepository.All().Where(x => x.Id == commentId)
                 .Select(x => x.TicketId).FirstOrDefault();
-            return ticketPostId == ticketId;
+            return commentTicketId == ticketId;
         }
     }
 }
