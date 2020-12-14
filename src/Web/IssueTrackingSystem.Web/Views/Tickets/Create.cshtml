@@ -1,6 +1,6 @@
 ﻿@model IssueTrackingSystem.Web.ViewModels.Tickets.CreateTicketInputModel
 @using IssueTrackingSystem.Data.Common.Enums;
-@{ 
+@{
     this.ViewData["Title"] = "Creating ticket";
     var categoryItems = Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
 }

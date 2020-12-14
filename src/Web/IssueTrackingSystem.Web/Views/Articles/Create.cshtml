@@ -1,5 +1,5 @@
 ﻿@model IssueTrackingSystem.Web.ViewModels.Articles.CreateArticleInputModel
-@{ 
+@{
     this.ViewData["Title"] = "Creating Articles";
     var categoryItems = Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
