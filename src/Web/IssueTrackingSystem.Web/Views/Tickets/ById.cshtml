@@ -29,7 +29,7 @@
                                 <article>
                                     @Html.Raw(comment.SanitizedContent)
                                 </article>
-                                @{ DisplayComments(comment.Id);}
+                                @{ await DisplayComments(comment.Id);}
                             </div>
                             <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
                                 <div class="text-muted small ml-3">
@@ -52,7 +52,7 @@
                     <div class="media flex-wrap w-100 align-items-center">
                         <div class="media-body ml-3">
                             <a asp-controller="Tickets" asp-action="ById"><h5>@Model.Title</h5></a>
-                            <div class="text-muted small ml-3">
+                            <div class="text-muted small">
                                 <div>Ticket created on: <strong><time datetime="@Model.CreatedOn.ToString("O")"></time></strong></div>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                     <div class="px-4 pt-3 float-right"> <button type="button" class="btn btn-primary float-right" onclick="showAddCommentForm(0)"><i class="fa fa-plus"></i>&nbsp; Reply</button> </div>
                     <div class="clearfix"></div>
                     <hr />
-                    @DisplayComments(null);
+                    @{ await DisplayComments(null); }
                 </div>
             </div>
         </div>

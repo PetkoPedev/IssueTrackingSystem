@@ -49,7 +49,7 @@
                 return this.View(input);
             }
 
-            var ticketId = await this.ticketsService.CreateAsync(input.Title, input.Content, input.CategoryId, input.TicketStatus, input.TicketPriority, user.Id);
+            var ticketId = await this.ticketsService.CreateAsync(input.Title, input.Content, input.CategoryId, user.Id, input.TicketStatus, input.TicketPriority);
 
             return this.RedirectToAction(nameof(this.All));
         }

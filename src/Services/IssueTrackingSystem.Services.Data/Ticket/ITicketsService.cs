@@ -10,7 +10,7 @@
 
     public interface ITicketsService
     {
-        Task<int> CreateAsync(string title, string content, int categoryId, TicketStatus ticketStatus, TicketPriority ticketPriority, string userId);
+        Task<int> CreateAsync(string title, string content, int categoryId, string userId, TicketStatus ticketStatus, TicketPriority ticketPriority);
 
         IEnumerable<TicketInListViewModel> GetAll(int page, int itemsPerPage = 4);
 

@@ -30,7 +30,7 @@
                             <td>@ticket.Id</td>
                             <td><a asp-action="ById" asp-route-id="@ticket.Id">@ticket.Title</a></td>
                             <td>@ticket.CategoryName</td>
-                            <td>Status</td>
+                            <td>Ticket Status</td>
                             <td>Priority</td>
                         </tr>
                     </tbody>
@@ -38,18 +38,6 @@
             </table>
         </div>
     </div>
-    @*@foreach (var ticket in this.Model.Tickets)
-        {
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">@ticket.CategoryName</h6>
-                </div>
-                <div class="card-body">
-                    <a asp-action="ById" asp-route-id="@ticket.Id">@ticket.Title</a>
-                </div>
-            </div>
-        }*@
-    
 </div>
 <hr />
 <partial name="_PagingPartial" model="@Model" />
