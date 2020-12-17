@@ -46,12 +46,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Areas\Identity\Pages\Account\Login.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Areas\Identity\Pages\Account\Register.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Update="Areas\Identity\Pages\_LoginPartial.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -73,5 +67,9 @@
     <Content Update="wwwroot\lib\moment\min\moment-with-locales.min.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Pages\Account\" />
   </ItemGroup>
 </Project>
