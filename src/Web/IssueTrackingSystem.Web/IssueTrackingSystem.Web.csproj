@@ -55,6 +55,9 @@
     <Content Update="Views\Shared\_LoginPartial.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="Views\Shared\_SidebarMenuPartial.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Views\Tickets\ById.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
