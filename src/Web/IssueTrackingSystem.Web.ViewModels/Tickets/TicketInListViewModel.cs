@@ -1,13 +1,13 @@
 ﻿namespace IssueTrackingSystem.Web.ViewModels.Tickets
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
+    using IssueTrackingSystem.Data.Common.Enums;
     using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Services.Mapping;
+    using System;
+    using System.Collections.Generic;
+    using System.Web.Mvc;
 
-    public class TicketInListViewModel
+    public class TicketInListViewModel : IMapFrom<Ticket>
     {
         public int Id { get; set; }
 

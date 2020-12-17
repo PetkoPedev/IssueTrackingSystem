@@ -19,7 +19,7 @@
                                     <div class="media-body ml-3">
                                         <a asp-controller="Tickets" asp-action="ById"><h5>@comment.UserUserName</h5></a>
                                         <div class="text-muted small ml-3">
-                                            <div>Ticket created on: <strong><time datetime="@comment.CreatedOn.ToString("O")"></time></strong></div>
+                                            <div>Ticket created on: <time datetime="@comment.CreatedOn.ToString("O")">@Model.CreatedOn.ToString("dd/MM/yyyy HH:mm")</time></div>
                                         </div>
                                     </div>
 
@@ -53,7 +53,7 @@
                         <div class="media-body ml-3">
                             <a asp-controller="Tickets" asp-action="ById"><h5>@Model.Title</h5></a>
                             <div class="text-muted small">
-                                <div>Ticket created on: <strong><time datetime="@Model.CreatedOn.ToString("O")"></time></strong></div>
+                                <div>Ticket created on: <time datetime="@Model.CreatedOn.ToString("O")">@Model.CreatedOn.ToString("dd/MM/yyyy HH:mm")</time></div>
                             </div>
                         </div>
                     </div>

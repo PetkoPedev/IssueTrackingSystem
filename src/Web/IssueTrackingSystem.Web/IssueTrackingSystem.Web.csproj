@@ -67,6 +67,9 @@
     <Content Update="Views\Tickets\Create.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="wwwroot\lib\moment\min\moment-with-locales.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\lib\moment\min\moment-with-locales.min.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
