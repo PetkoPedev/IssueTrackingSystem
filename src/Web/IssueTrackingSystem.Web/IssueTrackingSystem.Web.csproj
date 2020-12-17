@@ -71,5 +71,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Pages\Account\" />
+    <Folder Include="Pages\" />
   </ItemGroup>
 </Project>

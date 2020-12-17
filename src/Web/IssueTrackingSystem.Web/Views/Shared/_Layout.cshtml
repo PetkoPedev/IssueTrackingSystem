@@ -1,126 +1,80 @@
 ﻿@using IssueTrackingSystem.Common
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html class="no-js" lang="en">
+
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="~/lib/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-          rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>srtdash - ICO Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="~/srtdash/assets/images/icon/favicon.ico">
+    <link rel="stylesheet" href="~/srtdash/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/srtdash/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/srtdash/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="~/srtdash/assets/css/metisMenu.css">
+    <link rel="stylesheet" href="~/srtdash/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/srtdash/assets/css/slicknav.min.css">
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- others css -->
+    <link rel="stylesheet" href="~/srtdash/assets/css/typography.css">
+    <link rel="stylesheet" href="~/srtdash/assets/css/default-css.css">
+    <link rel="stylesheet" href="~/srtdash/assets/css/styles.css">
+    <link rel="stylesheet" href="~/srtdash/assets/css/responsive.css">
+    <!-- modernizr css -->
+    <script src="~/srtdash/assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-<body id="page-top">
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="" asp-controller="Home" asp-action="Index">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Issue Tracking System</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-            <partial name="_LoginPartial" />
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
-        <!-- End of Sidebar -->
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                </nav>
-                <!-- End of Topbar -->
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <partial name="_CookieConsentPartial" />
-                    <main role="main" class="pb-3">
-                        @this.RenderBody()
-                    </main>
-                </div>
-                <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- preloader area start -->
+    <div id="preloader">
+        <div class="loader"></div>
     </div>
-    <!-- End of Page Wrapper -->
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
+    <!-- preloader area end -->
+    <!-- page container area start -->
+    <div class="page-container">
+        <!-- main content area start -->
+        <!-- Page Heading -->
+        <partial name="_CookieConsentPartial" />
+        <main role="main">
+            @this.RenderBody()
+        </main>
+        <!-- main content area end -->
+        <!-- footer area start-->
+        <partial name="_FooterPartial" />
+        <!-- footer area end-->
+        <partial name="_RightPaneAreaPartial" />
     </div>
+    <!-- jquery latest version -->
+    <script src="~/srtdash/assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="~/srtdash/assets/js/popper.min.js"></script>
+    <script src="~/srtdash/assets/js/bootstrap.min.js"></script>
+    <script src="~/srtdash/assets/js/owl.carousel.min.js"></script>
+    <script src="~/srtdash/assets/js/metisMenu.min.js"></script>
+    <script src="~/srtdash/assets/js/jquery.slimscroll.min.js"></script>
+    <script src="~/srtdash/assets/js/jquery.slicknav.min.js"></script>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="~/lib/jquery/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="~/lib/jquery-easing/jquery.easing.min.js"></script>
+    <!-- start chart js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <!-- start highcharts js -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <!-- start zingchart js -->
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script>
+        zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+        ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
+    </script>
+    <!-- all line chart activation -->
+    <script src="~/srtdash/assets/js/line-chart.js"></script>
+    <!-- all pie chart -->
+    <script src="~/srtdash/assets/js/pie-chart.js"></script>
+    <!-- others plugins -->
+    <script src="~/srtdash/assets/js/plugins.js"></script>
+    <script src="~/srtdash/assets/js/scripts.js"></script>
 
     <!--TinyMCE-->
     <script src="https://cdn.tiny.cloud/1/5hhiyhga2zv5xywdjlxyjee22gyfnrgsqmw9f7zyseotcby8/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -132,10 +86,9 @@
     </script>
 
     <script src="~/lib/moment/min/moment-with-locales.min.js" asp-append-version="true"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="~/js/sb-admin-2.min.js"></script>
 
     @await this.RenderSectionAsync("Scripts", required: false)
 
 </body>
+
 </html>
