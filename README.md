@@ -1,6 +1,8 @@
 Technologies used in this project:
 - TinyMCE
 
+Free pictures provided by freepik.com.
+
 # ASP.NET Core Template
 
 A ready-to-use template for ASP.NET Core with repositories, services, models mapping, DI and StyleCop warnings fixed.
