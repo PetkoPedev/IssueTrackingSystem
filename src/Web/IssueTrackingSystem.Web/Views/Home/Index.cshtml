@@ -3,3 +3,66 @@
 
 <!-- main content area start -->
 <partial name="_SidebarMenuPartial" />
+<partial name="_HeadAreaPartial" />
+<div class="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-5">
+                <div class="title text-center pt-5">
+                    <h1 class="display-2 text-primary">@GlobalConstants.SystemName</h1>
+                    <h4 class="text-primary">The way to handle everyday problems.</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <!-- latest news area start -->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">For accessing the system, please use the buttons below.</h4>
+                    <div class="letest-news mt-5">
+                        <div class="single-post mb-xs-40 mb-sm-40">
+                            <div class="lts-thumb">
+                                <img src="~/srtdash/assets/images/blog/login-thumb-1.jpg" alt="post thumb">
+                            </div>
+                            <div class="lts-content">
+                                <span>Login area</span>
+                                <h2><a asp-area="Identity" asp-page="/Account/Login">Login</a></h2>
+                                <p>To access your admin area, please follow the link.</p>
+                            </div>
+                        </div>
+                        <div class="single-post">
+                            <div class="lts-thumb">
+                                <img src="~/srtdash/assets/images/blog/register-thumb-1.jpg" alt="post thumb">
+                            </div>
+                            <div class="lts-content">
+                                <span>Register area</span>
+                                <h2><a asp-area="Identity" asp-page="/Account/Register">Register</a></h2>
+                                <p>To register a new admin account, please follow the link.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- latest news area end -->
+        <!-- exchange area start -->
+        <div class="col-xl-6 mt-md-30 mt-xs-30 mt-sm-30">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">About</h4>
+                    <div class="card-body">
+                        <h5 class="title">Issue Tracking system</h5>
+                        <p class="card-text">
+                            Issues, issues. Everybody has issues, we have a solution. The company was created with the sole purpose of managing and solving the problems people have. From everyday business, to largescale problems.
+                            Try it for yourself.
+                        </p>
+                        <a href="#" class="btn btn-primary">Go More....</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- exchange area end -->
+    </div>
+</div>

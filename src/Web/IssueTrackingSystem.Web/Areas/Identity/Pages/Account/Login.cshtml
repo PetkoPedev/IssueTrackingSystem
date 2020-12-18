@@ -5,74 +5,52 @@
     ViewData["Title"] = "Log in";
 }
 
-
-<div class="container">
-
-    <!-- Outer Row -->
-    <div class="row justify-content-center">
-
-        <div class="col-xl-10 col-lg-12 col-md-9">
-
-            <div class="card o-hidden border-0 shadow-lg my-5">
-                <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                        <div class="col-lg-6">
-                            <div class="p-5">
-                                <form id="account" method="post">
-                                    <h4>Use a local account to log in.</h4>
-                                    <hr />
-                                    <div asp-validation-summary="All" class="text-danger"></div>
-                                    <div class="form-group">
-                                        <label asp-for="Input.Email"></label>
-                                        <input asp-for="Input.Email" class="form-control" />
-                                        <span asp-validation-for="Input.Email" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="Input.Password"></label>
-                                        <input asp-for="Input.Password" class="form-control" />
-                                        <span asp-validation-for="Input.Password" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="checkbox">
-                                            <label asp-for="Input.RememberMe">
-                                                <input asp-for="Input.RememberMe" />
-                                                @Html.DisplayNameFor(m => m.Input.RememberMe)
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary">Log in</button>
-                                    </div>
-                                    <div class="form-group">
-                                        <p>
-                                            <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                                        </p>
-                                        <p>
-                                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                                        </p>
-                                    </div>
-                                </form>
-                                <hr>
-                                <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                </div>
-                                <div class="text-center">
-                                    <a class="small" href="register.html">Create an Account!</a>
-                                </div>
-                            </div>
+<!-- login area start -->
+<div class="login-area login-s2">
+    <div class="container">
+        <div class="login-box ptb--100">
+            <form id="account" method="post">
+                <div class="login-form-head">
+                    <h4>Sign In</h4>
+                    <p>Hello there, Sign in and start managing your Admin Template</p>
+                </div>
+                <div class="login-form-body">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Input.Email"></label>
+                        <input asp-for="Input.Email" class="form-control" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Password"></label>
+                        <input asp-for="Input.Password" class="form-control" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label asp-for="Input.RememberMe">
+                                <input asp-for="Input.RememberMe" />
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Log in</button>
+                    </div>
+                    <div class="form-group">
+                        <p>
+                            <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                        </p>
+                        <p>
+                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                        </p>
+                    </div>
                 </div>
-            </div>
-
+            </form>
         </div>
-
     </div>
-
 </div>
-
+<!-- login area end -->
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -80,8 +58,6 @@
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
