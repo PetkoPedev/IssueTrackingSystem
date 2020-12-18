@@ -132,7 +132,7 @@
         background: #fffbfb;
     }
     .sbar_collapsed .sidebar-menu {
-        left: -90%;
+        left: -100%;
     }
     .sbar_collapsed .nav-btn {
         position: initial;

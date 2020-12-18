@@ -3,96 +3,57 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
-
-<ul class="navbar-nav">
-    @if (this.SignInManager.IsSignedIn(this.User))
-    {
-        <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class="fas fa-user-tie"></i><span>Hello @(this.User.Identity.Name)!</span></a>
-        </li>
-        if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-        {
-            <div class="sidebar-heading">
-                Admin Area bla bal sadas
+@if (this.User.Identity.IsAuthenticated)
+{
+    <!-- exchange area start -->
+    <div class="col-xl-6 mt-md-30 mt-xs-30 mt-sm-30">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="header-title">@GlobalConstants.SystemName</h4>
+                <div class="card-body">
+                    <h5 class="title">Welcome to your admin system.</h5>
+                    <p class="card-text">
+                        You have logged in successfully as an administrator of your company. Happy issue solving.
+                    </p>
+                    <a href="#" class="btn btn-primary">Go More....</a>
+                </div>
             </div>
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">
-                    <i class="fas fa-fw fa-tachometer-alt"></i><span>Dashboard</span></a>
-            </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTickets"
-                    aria-expanded="true" aria-controls="collapseTickets">
-                    <i class="fas fa-ticket-alt"></i>
-                    <span>Tickets</span>
-                </a>
-                <div id="collapseTickets" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Ticket Actions:</h6>
-                        <a class="collapse-item" href="buttons.html"><i class="fas fa-plus"></i><span> Add Ticket</span></a>
-                        <a class="collapse-item" href="buttons.html"><i class="fas fa-edit"></i><span> Edit Ticket</span></a>
-                        <a class="collapse-item" href="cards.html"><i class="fas fa-minus"></i><span> Delete Ticket</span></a>
+        </div>
+    </div>
+    <!-- exchange area end -->
+}
+else
+{
+    <!-- latest news area start -->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">For accessing the system, please use the buttons below.</h4>
+                    <div class="letest-news mt-5">
+                        <div class="single-post mb-xs-40 mb-sm-40">
+                            <div class="lts-thumb">
+                                <img src="~/srtdash/assets/images/blog/login-thumb-1.jpg" alt="post thumb">
+                            </div>
+                            <div class="lts-content">
+                                <span>Login area</span>
+                                <h2><a asp-area="Identity" asp-page="/Account/Login">Login</a></h2>
+                                <p>To access your admin area, please follow the link.</p>
+                            </div>
+                        </div>
+                        <div class="single-post">
+                            <div class="lts-thumb">
+                                <img src="~/srtdash/assets/images/blog/register-thumb-1.jpg" alt="post thumb">
+                            </div>
+                            <div class="lts-content">
+                                <span>Register area</span>
+                                <h2><a asp-area="Identity" asp-page="/Account/Register">Register</a></h2>
+        
+                                <p>To register a new admin account, please follow the link.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategories"
-                    aria-expanded="true" aria-controls="collapseCategories">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Categories</span>
-                </a>
-                <div id="collapseCategories" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Ticket Actions:</h6>
-                        <a class="collapse-item" href="buttons.html"><i class="fas fa-plus"></i><span> Add Category</span></a>
-                        <a class="collapse-item" href="buttons.html"><i class="fas fa-edit"></i><span> Edit Category</span></a>
-                        <a class="collapse-item" href="cards.html"><i class="fas fa-minus"></i><span> Delete Category</span></a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
-                    aria-expanded="true" aria-controls="collapseUsers">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Users</span>
-                </a>
-                <div id="collapseUsers" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">User Actions:</h6>
-                        <a class="collapse-item" href="buttons.html"><i class="fas fa-plus"></i><span> Add User</span></a>
-                        <a class="collapse-item" href="buttons.html"><i class="fas fa-edit"></i><span> Edit User Info</span></a>
-                        <a class="collapse-item" href="cards.html"><i class="fas fa-plus"></i><span> Delete User</span></a>
-                    </div>
-                </div>
-            </li>
-
-        }
-        <li class="nav-item">
-            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button id="logout" type="submit" class="nav-link btn btn-link">
-                    <i class="fas fa-sign-out-alt"></i><span>Logout</span>
-                </button>
-            </form>
-        </li>
-        }
-    else
-    {
-        <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">
-            <i class="fas fa-user-alt"></i><span>Register</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">
-            <i class="fas fa-house-user"></i>
-            <span>Login</span>
-            </a>
-        </li>
-    }
-</ul>
+            </div>
+        </div> 
+    <!-- latest news area end -->
+}

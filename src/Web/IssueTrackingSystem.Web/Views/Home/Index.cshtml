@@ -1,5 +1,8 @@
-﻿@using IssueTrackingSystem.Common
-@{ this.ViewData["Title"] = "Home Page"; }
+﻿@using IssueTrackingSystem.Common;
+@{
+    this.Layout = "_Layout";
+    this.ViewData["Title"] = "Home Page";
+}
 
 <!-- main content area start -->
 <partial name="_SidebarMenuPartial" />
@@ -16,37 +19,7 @@
         </div>
     </div>
     <div class="row mt-5">
-        <!-- latest news area start -->
-        <div class="col-xl-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="header-title">For accessing the system, please use the buttons below.</h4>
-                    <div class="letest-news mt-5">
-                        <div class="single-post mb-xs-40 mb-sm-40">
-                            <div class="lts-thumb">
-                                <img src="~/srtdash/assets/images/blog/login-thumb-1.jpg" alt="post thumb">
-                            </div>
-                            <div class="lts-content">
-                                <span>Login area</span>
-                                <h2><a asp-area="Identity" asp-page="/Account/Login">Login</a></h2>
-                                <p>To access your admin area, please follow the link.</p>
-                            </div>
-                        </div>
-                        <div class="single-post">
-                            <div class="lts-thumb">
-                                <img src="~/srtdash/assets/images/blog/register-thumb-1.jpg" alt="post thumb">
-                            </div>
-                            <div class="lts-content">
-                                <span>Register area</span>
-                                <h2><a asp-area="Identity" asp-page="/Account/Register">Register</a></h2>
-                                <p>To register a new admin account, please follow the link.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- latest news area end -->
+        <partial name="~/Views/Shared/_LoginPartial.cshtml" />
         <!-- exchange area start -->
         <div class="col-xl-6 mt-md-30 mt-xs-30 mt-sm-30">
             <div class="card">
