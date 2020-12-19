@@ -17,5 +17,7 @@
         T GetById<T>(int id);
 
         IEnumerable<ArticleInListViewModel> GetAll(int page, int itemsPerPage = 12);
+
+        Task<int> DeleteAsync(int id);
     }
 }

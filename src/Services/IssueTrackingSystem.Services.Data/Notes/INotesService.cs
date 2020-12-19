@@ -17,5 +17,7 @@
         int GetCount();
 
         IEnumerable<NoteInListViewModel> GetAll(int page, int itemsPerPage = 6);
+
+        Task<int> DeleteAsync(int id);
     }
 }

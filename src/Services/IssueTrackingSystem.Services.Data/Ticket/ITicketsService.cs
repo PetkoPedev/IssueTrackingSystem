@@ -17,7 +17,7 @@
 
         int GetCount();
 
-        Ticket GetById<Ticket>(int id);
+        Task<T> GetById<T>(int id);
 
         Task<int> DeleteAsync(int id);
     }

@@ -2,17 +2,28 @@
 @{ 
     this.ViewData["Title"] = "All your notes.";
 }
-<h1>@this.ViewData["Title"]</h1>
-<hr />
+<partial name="_SidebarMenuPartial" />
+<partial name="_HeadAreaPartial" />
 <div class="row">
     @foreach (var note in this.Model.Notes)
     {
-        <div class="card shadow mb-4" style="width: 15rem;">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary"><a asp-action="ById" asp-route-id="@note.Id">@note.Name</a></h6>
-            </div>
-            <div class="card-body">
-                @note.Content
+        @*<div class="card shadow mb-4" style="width: 15rem;">
+                <div class="card-header py-3">
+                    
+                </div>
+                <div class="card-body">
+                    @note.Content
+                </div>
+            </div>*@
+        <div class="col-lg-4 col-md-6 mt-5">
+            <div class="card card-bordered">
+                <div class="card-body">
+                    <h5 class="title">@note.Name</h5>
+                    <p class="card-text">
+                        @Html.Raw(note.ShortContent)
+                    </p>
+                    <a asp-controller="Notes" asp-action="ById" asp-route-id="@note.Id" class="btn btn-primary">Open</a>
+                </div>
             </div>
         </div>
     }

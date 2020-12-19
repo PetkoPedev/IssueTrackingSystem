@@ -73,5 +73,12 @@
             var article = this.articlesService.GetById<SingleArticleViewModel>(id);
             return this.View(article);
         }
+
+        [Authorize]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.articlesService.DeleteAsync(id);
+            return this.RedirectToAction(nameof(this.All));
+        }
     }
 }

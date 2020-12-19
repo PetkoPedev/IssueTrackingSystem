@@ -2,10 +2,8 @@
 @{
     this.ViewData["Title"] = "All Articles";
 }
-
-<h1>@this.ViewData["Title"]</h1>
-<hr />
-
+<partial name="_SidebarMenuPartial" />
+<partial name="_HeadAreaPartial" />
 <!-- Basic Card Example -->
 <div class="shadow mb-4">
     <div class="card-header py-3">
@@ -19,6 +17,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Category</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 @foreach (var article in this.Model.Articles)
@@ -28,24 +27,13 @@
                             <td>@article.Id</td>
                             <td><a asp-action="ById" asp-route-id="@article.Id">@article.ArticleName</a></td>
                             <td>@article.ArticleName</td>
+                            <td><a asp-controller="Articles" asp-action="Delete" asp-route-id="@article.Id" type="button" class="btn btn-danger mb-3">Delete</a></td>
                         </tr>
                     </tbody>
                 }
             </table>
         </div>
     </div>
-    @*@foreach (var ticket in this.Model.Tickets)
-        {
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">@ticket.CategoryName</h6>
-                </div>
-                <div class="card-body">
-                    <a asp-action="ById" asp-route-id="@ticket.Id">@ticket.Title</a>
-                </div>
-            </div>
-        }*@
-
 </div>
 <hr />
 <partial name="_PagingPartial" model="@Model" />

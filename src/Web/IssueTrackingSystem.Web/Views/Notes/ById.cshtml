@@ -1,1 +1,21 @@
-﻿<h1>Note:</h1>
+﻿@model IssueTrackingSystem.Web.ViewModels.Notes.SingleNoteViewModel
+@{
+    this.ViewData["Title"] = Model.Name;
+}
+<partial name="_SidebarMenuPartial" />
+<partial name="_HeadAreaPartial" />
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800">@Model.Name</h1>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary">@Model.Name</h5>
+        </div>
+        <div class="card-body">
+            @Html.Raw(Model.Content)
+        </div>
+        <a asp-controller="Notes" asp-action="Delete" asp-route-id="@Model.Id" type="button" class="btn btn-danger mb-3">Delete</a>
+    </div>
+
+</div>

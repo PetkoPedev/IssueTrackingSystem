@@ -68,5 +68,14 @@
 
             return articles;
         }
+
+        public async Task<int> DeleteAsync(int id)
+        {
+            var article = this.articleRepository.AllAsNoTracking().Where(x => x.Id == id).FirstOrDefault();
+            this.articleRepository.Delete(article);
+            await this.articleRepository.SaveChangesAsync();
+
+            return article.Id;
+        }
     }
 }

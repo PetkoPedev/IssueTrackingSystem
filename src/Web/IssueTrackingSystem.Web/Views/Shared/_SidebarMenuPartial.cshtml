@@ -24,8 +24,8 @@
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fas fa-ticket-alt"></i><span>Categories</span></a>
                                 <ul class="collapse">
-                                    <li><a href="barchart.html"><i class="fas fa-plus"></i><span>Add a category</span></a></li>
-                                    <li><a href="piechart.html"><i class="fas fa-list"></i><span>List all categories</span></a></li>
+                                    <li><a asp-controller="Categories" asp-action="Create"><i class="fas fa-plus"></i><span>Add a category</span></a></li>
+                                    <li><a asp-controller="Categories" asp-action="All"><i class="fas fa-list"></i><span>List all categories</span></a></li>
                                 </ul>
                             </li>
                         }
@@ -40,17 +40,15 @@
                         <li>
                             <a href="javascript:void(0)" aria-expanded="true"><i class="fas fa-newspaper"></i><span>Articles</span></a>
                             <ul class="collapse">
-                                <li><a href="barchart.html"><i class="fas fa-plus"></i><span>Add an article</span></a></li>
-                                <li><a href="linechart.html"><i class="fas fa-edit"></i><span>Edit an article</span></a></li>
-                                <li><a href="piechart.html"><i class="fas fa-list"></i><span>List all tickets</span></a></li>
+                                <li><a asp-controller="Articles" asp-action="Create"><i class="fas fa-plus"></i><span>Add an article</span></a></li>
+                                <li><a asp-controller="Articles" asp-action="All"><i class="fas fa-list"></i><span>List all articles</span></a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="javascript:void(0)" aria-expanded="true"><i class="far fa-sticky-note"></i><span>Notes</span></a>
                             <ul class="collapse">
-                                <li><a href="barchart.html"><i class="fas fa-plus"></i><span>Add a note</span></a></li>
-                                <li><a href="linechart.html"><i class="fas fa-edit"></i><span>Edit a note</span></a></li>
-                                <li><a href="piechart.html"><i class="fas fa-list"></i><span>List all notes</span></a></li>
+                                <li><a asp-controller="Notes" asp-action="Create"><i class="fas fa-plus"></i><span>Add a note</span></a></li>
+                                <li><a asp-controller="Notes" asp-action="All"><i class="fas fa-list"></i><span>List all notes</span></a></li>
                             </ul>
                         </li>
                     }

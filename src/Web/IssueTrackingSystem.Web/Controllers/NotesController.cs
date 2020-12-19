@@ -65,5 +65,12 @@
             var note = this.notesService.GetById<SingleNoteViewModel>(id);
             return this.View(note);
         }
+
+        [Authorize]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.notesService.DeleteAsync(id);
+            return this.RedirectToAction(nameof(this.All));
+        }
     }
 }

@@ -65,5 +65,14 @@
 
             return notes;
         }
+
+        public async Task<int> DeleteAsync(int id)
+        {
+            var note = this.noteRepository.AllAsNoTracking().Where(x => x.Id == id).FirstOrDefault();
+            this.noteRepository.Delete(note);
+            await this.noteRepository.SaveChangesAsync();
+
+            return note.Id;
+        }
     }
 }

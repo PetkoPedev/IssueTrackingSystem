@@ -62,12 +62,12 @@
             return tickets;
         }
 
-        public Ticket GetById<Ticket>(int id)
+        public async Task<T> GetById<T>(int id)
         {
             var ticket = this.ticketRepository
                 .AllAsNoTracking()
                 .Where(x => x.Id == id)
-                .To<Ticket>()
+                .To<T>()
                 .FirstOrDefault();
 
             return ticket;
