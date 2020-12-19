@@ -77,5 +77,14 @@
         {
             return this.ticketRepository.All().Count();
         }
+
+        public async Task<int> DeleteAsync(int id)
+        {
+            var ticket = this.ticketRepository.AllAsNoTracking().Where(x => x.Id == id).FirstOrDefault();
+            this.ticketRepository.Delete(ticket);
+            await this.ticketRepository.SaveChangesAsync();
+
+            return ticket.Id;
+        }
     }
 }

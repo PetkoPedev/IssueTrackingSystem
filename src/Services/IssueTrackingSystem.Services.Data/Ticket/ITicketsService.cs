@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
 
     using IssueTrackingSystem.Data.Common.Enums;
+    using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Web.ViewModels.Tickets;
 
     public interface ITicketsService
@@ -17,5 +18,7 @@
         int GetCount();
 
         Ticket GetById<Ticket>(int id);
+
+        Task<int> DeleteAsync(int id);
     }
 }

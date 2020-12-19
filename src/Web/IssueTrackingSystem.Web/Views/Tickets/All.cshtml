@@ -3,9 +3,7 @@
     this.ViewData["Title"] = "All Tickets";
 }
 
-<h1>@this.ViewData["Title"]</h1>
-<hr />
-
+<partial name="~/Views/Shared/_HeadAreaPartial.cshtml" />
 <!-- Basic Card Example -->
 <div class="shadow mb-4">
     <div class="card-header py-3">
@@ -21,6 +19,7 @@
                         <th scope="col">Category</th>
                         <th scope="col">Status</th>
                         <th scope="col">Priority</th>
+                        <th scope="col">Actions:</th>
                     </tr>
                 </thead>
                 @foreach (var ticket in this.Model.Tickets)
@@ -32,6 +31,9 @@
                             <td>@ticket.CategoryName</td>
                             <td>Ticket Status</td>
                             <td>Priority</td>
+                            <td>
+                                <a class="btn btn-danger mb-3" asp-controller="Tickets" asp-action="Delete" asp-route-id="@ticket.Id">Delete</a>
+                            </td>
                         </tr>
                     </tbody>
                 }
@@ -41,3 +43,5 @@
 </div>
 <hr />
 <partial name="_PagingPartial" model="@Model" />
+<partial name="~/Views/Shared/_SidebarMenuPartial.cshtml" />
+<partial name="~/Views/Shared/_RightPaneAreaPartial.cshtml" />

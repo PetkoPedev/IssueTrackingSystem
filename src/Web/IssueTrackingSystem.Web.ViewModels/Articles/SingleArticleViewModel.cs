@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+
     using Ganss.XSS;
     using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Services.Mapping;

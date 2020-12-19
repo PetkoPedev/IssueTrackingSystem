@@ -74,5 +74,12 @@
             var ticket = this.ticketsService.GetById<SingleTicketViewModel>(id);
             return this.View(ticket);
         }
+
+        [Authorize]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.ticketsService.DeleteAsync(id);
+            return this.RedirectToAction(nameof(this.All));
+        }
     }
 }
