@@ -1,28 +1,27 @@
 ﻿namespace IssueTrackingSystem.Data.Seeding
 {
+    using IssueTrackingSystem.Data.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
 
-    using IssueTrackingSystem.Data.Models;
-
-    public class CategoriesSeeder : ISeeder
+    public class PrioritiesSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
-            if (dbContext.TicketCategories.Any())
+            if (dbContext.Priorities.Any())
             {
                 return;
             }
 
-            var categories = new List<string> { "Hardware", "Software", "MS Office" };
-            foreach (var category in categories)
+            var priorities = new List<string> { "Low", "Middle", "High" };
+            foreach (var priority in priorities)
             {
-                await dbContext.TicketCategories.AddAsync(new TicketCategory
+                await dbContext.Priorities.AddAsync(new TicketPriority
                 {
-                    Name = category,
+                    Name = priority,
                 });
             }
         }

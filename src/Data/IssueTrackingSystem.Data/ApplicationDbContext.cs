@@ -28,15 +28,21 @@
 
         public DbSet<Comment> Comments { get; set; }
 
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<TicketCategory> TicketCategories { get; set; }
 
         public DbSet<Article> Articles { get; set; }
+
+        public DbSet<ArticleCategory> ArticleCategories { get; set; }
 
         public DbSet<Note> Notes { get; set; }
 
         public DbSet<Setting> Settings { get; set; }
 
         public DbSet<UserTicket> UserTickets { get; set; }
+
+        public DbSet<TicketStatus> Statuses { get; set; }
+
+        public DbSet<TicketPriority> Priorities { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

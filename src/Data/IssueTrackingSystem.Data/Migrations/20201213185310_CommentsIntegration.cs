@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace IssueTrackingSystem.Data.Migrations
+﻿namespace IssueTrackingSystem.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class CommentsIntegration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

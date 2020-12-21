@@ -27,7 +27,7 @@
                 ArticleName = articleName,
                 Content = content,
                 UserId = userId,
-                CategoryId = categoryId,
+                ArticleCategoryId = categoryId,
             };
 
             await this.articleRepository.AddAsync(article);
@@ -62,7 +62,7 @@
                     Id = x.Id,
                     ArticleName = x.ArticleName,
                     Content = x.Content,
-                    CategoryId = x.CategoryId,
+                    ArticleCategoryId = x.ArticleCategory.Id,
                     UserId = x.UserId,
                 }).ToList();
 

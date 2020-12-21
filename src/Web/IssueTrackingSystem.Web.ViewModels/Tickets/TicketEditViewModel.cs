@@ -6,7 +6,7 @@
     using System.Text;
 
     using Ganss.XSS;
-    using IssueTrackingSystem.Data.Common.Enums;
+    // using IssueTrackingSystem.Data.Common.Enums;
     using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Services.Mapping;
 
@@ -14,24 +14,16 @@
     {
         public int Id { get; set; }
 
-        [Required]
-        public string Title { get; set; }
-
-        [Required]
-        public string Content { get; set; }
-
         public int CategoryId { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
 
-        public int TicketStatusId { get; set; }
+        public int StatusId { get; set; }
 
-        [Required]
-        public TicketStatus TicketStatus { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> TicketStatusItems { get; set; }
 
-        public int TicketPriorityId { get; set; }
+        public int PriorityId { get; set; }
 
-        [Required]
-        public TicketPriority TicketPriority { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> TicketPriorityItems { get; set; }
     }
 }

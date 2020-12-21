@@ -7,7 +7,7 @@
     using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Services.Mapping;
 
-    public class AllCategoriesViewModel : IMapFrom<Category>
+    public class AllCategoriesViewModel : IMapFrom<TicketCategory>
     {
         public string Name { get; set; }
 

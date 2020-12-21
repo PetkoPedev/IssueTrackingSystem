@@ -5,7 +5,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.Text;
 
-    using IssueTrackingSystem.Data.Common.Enums;
+    // using IssueTrackingSystem.Data.Common.Enums;
     using IssueTrackingSystem.Data.Models;
 
     public class CreateTicketInputModel
@@ -20,10 +20,12 @@
 
         public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
 
-        [Required]
-        public TicketStatus TicketStatus { get; set; }
+        public int StatusId { get; set; }
 
-        [Required]
-        public TicketPriority TicketPriority { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> TicketStatusItems { get; set; }
+
+        public int PriorityId { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> TicketPriorityItems { get; set; }
     }
 }

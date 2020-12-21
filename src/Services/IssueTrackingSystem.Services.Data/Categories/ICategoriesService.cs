@@ -15,6 +15,6 @@
 
         Task<int> CreateAsync(string name);
 
-        IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
+        IEnumerable<KeyValuePair<string, string>> GetAllCategoriesAsKeyValuePairs();
     }
 }

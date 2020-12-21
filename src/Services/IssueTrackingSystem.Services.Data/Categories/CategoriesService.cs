@@ -12,16 +12,16 @@
 
     public class CategoriesService : ICategoriesService
     {
-        private readonly IDeletableEntityRepository<Category> categoriesRepository;
+        private readonly IDeletableEntityRepository<TicketCategory> categoriesRepository;
 
-        public CategoriesService(IDeletableEntityRepository<Category> categoriesRepository)
+        public CategoriesService(IDeletableEntityRepository<TicketCategory> categoriesRepository)
         {
             this.categoriesRepository = categoriesRepository;
         }
 
         public async Task<int> CreateAsync(string name)
         {
-            var category = new Category
+            var category = new TicketCategory
             {
                 Name = name,
             };
@@ -44,7 +44,7 @@
             return allCategories.To<T>().ToList();
         }
 
-        public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
+        public IEnumerable<KeyValuePair<string, string>> GetAllCategoriesAsKeyValuePairs()
         {
             return this.categoriesRepository.All().Select(x => new
             {

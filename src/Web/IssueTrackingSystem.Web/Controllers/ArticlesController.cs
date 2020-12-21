@@ -34,7 +34,7 @@
         public IActionResult Create()
         {
             var viewModel = new CreateArticleInputModel();
-            viewModel.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
+            viewModel.CategoriesItems = this.categoriesService.GetAllCategoriesAsKeyValuePairs();
             return this.View(viewModel);
         }
 
@@ -45,7 +45,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             if (!this.ModelState.IsValid)
             {
-                input.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
+                input.CategoriesItems = this.categoriesService.GetAllCategoriesAsKeyValuePairs();
                 return this.View(input);
             }
 

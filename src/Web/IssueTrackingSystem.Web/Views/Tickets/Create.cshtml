@@ -1,9 +1,10 @@
 ﻿@model IssueTrackingSystem.Web.ViewModels.Tickets.CreateTicketInputModel
-@using IssueTrackingSystem.Data.Common.Enums;
 @{
     this.Layout = "_Layout";
     this.ViewData["Title"] = "Creating ticket";
     var categoryItems = Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
+    var statusItems = Model.TicketStatusItems.Select(x => new SelectListItem(x.Value, x.Key));
+    var priorityItems = Model.TicketPriorityItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
 <partial name="~/Views/Shared/_HeadAreaPartial.cshtml" />
 <div class="col-12 mt-5">
@@ -27,14 +28,14 @@
                     <span asp-validation-for="CategoryId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="TicketStatus">Ticket Status</label>
-                    <select asp-for="TicketStatus" class="form-control" asp-items="@Html.GetEnumSelectList<TicketStatus>()"></select>
-                    <span asp-validation-for="TicketStatus" class="text-danger"></span>
+                    <label asp-for="StatusId">Ticket Status</label>
+                    <select asp-for="StatusId" class="form-control" asp-items="statusItems"></select>
+                    <span asp-validation-for="StatusId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="TicketPriority">Ticket Priority</label>
-                    <select asp-for="TicketPriority" class="form-control" asp-items="@Html.GetEnumSelectList<TicketPriority>()"></select>
-                    <span asp-validation-for="TicketPriority" class="text-danger"></span>
+                    <label asp-for="PriorityId">Ticket Priority</label>
+                    <select asp-for="PriorityId" class="form-control" asp-items="priorityItems"></select>
+                    <span asp-validation-for="PriorityId" class="text-danger"></span>
                 </div>
                 <input type="submit" class="btn btn-primary" />
             </form>

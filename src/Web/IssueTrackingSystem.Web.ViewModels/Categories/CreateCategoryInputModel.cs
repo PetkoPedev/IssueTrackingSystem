@@ -7,7 +7,7 @@
     using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Services.Mapping;
 
-    public class CreateCategoryInputModel : IMapFrom<Category>
+    public class CreateCategoryInputModel : IMapFrom<TicketCategory>
     {
         public int Id { get; set; }
 

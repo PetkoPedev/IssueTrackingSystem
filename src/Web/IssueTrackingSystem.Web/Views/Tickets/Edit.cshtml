@@ -1,9 +1,10 @@
 ﻿@model IssueTrackingSystem.Web.ViewModels.Tickets.TicketEditViewModel
-@using IssueTrackingSystem.Data.Common.Enums;
 @{
     this.Layout = "_Layout";
     this.ViewData["Title"] = "Edit ticket";
     var categoryItems = Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
+    var statusItems = Model.TicketStatusItems.Select(x => new SelectListItem(x.Value, x.Key));
+    var priorityItems = Model.TicketPriorityItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
 <partial name="~/Views/Shared/_HeadAreaPartial.cshtml" />
 <div class="col-12 mt-5">
@@ -13,29 +14,19 @@
                 <input hidden asp-for="Id" />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="Title">Title</label>
-                    <input asp-for="Title" class="form-control form-control-lg input-rounded mb-4" type="text" placeholder="Your title here" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Content"></label>
-                    <textarea asp-for="Content" class="form-control" rows="5"></textarea>
-                    <span asp-validation-for="Content" class="text-danger"></span>
-                </div>
-                <div class="form-group">
                     <label asp-for="CategoryId">Category</label>
                     <select asp-for="CategoryId" class="form-control" asp-items="categoryItems"></select>
                     <span asp-validation-for="CategoryId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="TicketStatusId">Ticket Status</label>
-                    <select asp-for="TicketStatusId" class="form-control" asp-items="Html.GetEnumSelectList<TicketStatus>()"></select>
-                    <span asp-validation-for="TicketStatusId" class="text-danger"></span>
+                    <label asp-for="StatusId">Ticket Status</label>
+                    <select asp-for="StatusId" class="form-control" asp-items="statusItems"></select>
+                    <span asp-validation-for="StatusId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="TicketPriorityId">Ticket Priority</label>
-                    <select asp-for="TicketPriorityId" class="form-control" asp-items="Html.GetEnumSelectList<TicketPriority>()"></select>
-                    <span asp-validation-for="TicketPriorityId" class="text-danger"></span>
+                    <label asp-for="PriorityId">Ticket Priority</label>
+                    <select asp-for="PriorityId" class="form-control" asp-items="priorityItems"></select>
+                    <span asp-validation-for="PriorityId" class="text-danger"></span>
                 </div>
                 <input type="submit" class="btn btn-primary" />
             </form>

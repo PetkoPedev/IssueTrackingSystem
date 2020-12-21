@@ -5,7 +5,6 @@
     using System.Net.Mime;
     using System.Text;
 
-    using IssueTrackingSystem.Data.Common.Enums;
     using IssueTrackingSystem.Data.Common.Models;
 
     public class Ticket : BaseDeletableModel<int>
@@ -25,12 +24,16 @@
 
         public int CategoryId { get; set; }
 
-        public virtual Category Category { get; set; }
+        public virtual TicketCategory Category { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
 
-        public TicketStatus TicketStatus { get; set; }
+        public int TicketStatusId { get; set; }
 
-        public TicketPriority TicketPriority { get; set; }
+        public virtual TicketStatus TicketStatus { get; set; }
+
+        public int TicketPriorityId { get; set; }
+
+        public virtual TicketPriority TicketPriority { get; set; }
     }
 }

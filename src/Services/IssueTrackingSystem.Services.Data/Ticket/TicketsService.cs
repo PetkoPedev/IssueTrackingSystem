@@ -6,7 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    using IssueTrackingSystem.Data.Common.Enums;
+    // using IssueTrackingSystem.Data.Common.Enums;
     using IssueTrackingSystem.Data.Common.Repositories;
     using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Services.Mapping;
@@ -26,16 +26,16 @@
             string content,
             int categoryId,
             string userId,
-            TicketStatus ticketStatus = TicketStatus.Open,
-            TicketPriority ticketPriority = TicketPriority.Low)
+            int ticketStatusId,
+            int ticketPriorityId)
         {
             var ticket = new Ticket
             {
                 Title = title,
                 Content = content,
                 CategoryId = categoryId,
-                TicketStatus = ticketStatus,
-                TicketPriority = ticketPriority,
+                TicketStatusId = ticketStatusId,
+                TicketPriorityId = ticketPriorityId,
                 UserId = userId,
             };
 
@@ -85,6 +85,16 @@
             await this.ticketRepository.SaveChangesAsync();
 
             return ticket.Id;
+        }
+
+        public async Task EditAsync(int id, int categoryId, int ticketStatus, int ticketPriority)
+        {
+            var ticket = this.ticketRepository.AllAsNoTracking().Where(x => x.Id == id).FirstOrDefault();
+            ticket.TicketStatus.Id = ticketStatus;
+            ticket.TicketPriority.Id = ticketPriority;
+
+            this.ticketRepository.Update(ticket);
+            await this.ticketRepository.SaveChangesAsync();
         }
     }
 }

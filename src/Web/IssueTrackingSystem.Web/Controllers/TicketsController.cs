@@ -7,6 +7,8 @@
 
     using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Services.Data.Categories;
+    using IssueTrackingSystem.Services.Data.Priorities;
+    using IssueTrackingSystem.Services.Data.Statuses;
     using IssueTrackingSystem.Services.Data.Ticket;
     using IssueTrackingSystem.Web.ViewModels.Categories;
     using IssueTrackingSystem.Web.ViewModels.Tickets;
@@ -19,22 +21,30 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ITicketsService ticketsService;
         private readonly ICategoriesService categoriesService;
+        private readonly IStatusesService statusesService;
+        private readonly IPrioritiesService prioritiesService;
 
         public TicketsController(
             UserManager<ApplicationUser> userManager,
             ITicketsService ticketsService,
-            ICategoriesService categoriesService)
+            ICategoriesService categoriesService,
+            IStatusesService statusesService,
+            IPrioritiesService prioritiesService)
         {
             this.userManager = userManager;
             this.ticketsService = ticketsService;
             this.categoriesService = categoriesService;
+            this.statusesService = statusesService;
+            this.prioritiesService = prioritiesService;
         }
 
         [Authorize]
         public IActionResult Create()
         {
             var viewModel = new CreateTicketInputModel();
-            viewModel.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
+            viewModel.CategoriesItems = this.categoriesService.GetAllCategoriesAsKeyValuePairs();
+            viewModel.TicketStatusItems = this.statusesService.GetAllStatusesAsKeyValuePairs();
+            viewModel.TicketPriorityItems = this.prioritiesService.GetAllPrioritiesAsKeyValuePairs();
             return this.View(viewModel);
         }
 
@@ -45,11 +55,13 @@
             var user = await this.userManager.GetUserAsync(this.User);
             if (!this.ModelState.IsValid)
             {
-                input.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
+                input.CategoriesItems = this.categoriesService.GetAllCategoriesAsKeyValuePairs();
+                input.TicketStatusItems = this.statusesService.GetAllStatusesAsKeyValuePairs();
+                input.TicketPriorityItems = this.prioritiesService.GetAllPrioritiesAsKeyValuePairs();
                 return this.View(input);
             }
 
-            var ticketId = await this.ticketsService.CreateAsync(input.Title, input.Content, input.CategoryId, user.Id, input.TicketStatus, input.TicketPriority);
+            var ticketId = await this.ticketsService.CreateAsync(input.Title, input.Content, input.CategoryId, user.Id, input.StatusId, input.PriorityId);
 
             return this.RedirectToAction(nameof(this.All));
         }
@@ -69,9 +81,9 @@
         }
 
         [Authorize]
-        public IActionResult ById(int id)
+        public async Task<IActionResult> ById(int id)
         {
-            var ticket = this.ticketsService.GetById<SingleTicketViewModel>(id);
+            var ticket = await this.ticketsService.GetById<SingleTicketViewModel>(id);
             return this.View(ticket);
         }
 
@@ -79,6 +91,26 @@
         public async Task<IActionResult> Delete(int id)
         {
             await this.ticketsService.DeleteAsync(id);
+            return this.RedirectToAction(nameof(this.All));
+        }
+
+        [Authorize]
+        public IActionResult Edit()
+        {
+            var viewModel = new TicketEditViewModel();
+            viewModel.CategoriesItems = this.categoriesService.GetAllCategoriesAsKeyValuePairs();
+            viewModel.TicketStatusItems = this.statusesService.GetAllStatusesAsKeyValuePairs();
+            viewModel.TicketPriorityItems = this.prioritiesService.GetAllPrioritiesAsKeyValuePairs();
+            return this.View(viewModel);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Edit(TicketEditViewModel viewModel)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            await this.ticketsService.EditAsync(viewModel.Id, viewModel.CategoryId, viewModel.StatusId, viewModel.PriorityId);
+
             return this.RedirectToAction(nameof(this.All));
         }
     }
