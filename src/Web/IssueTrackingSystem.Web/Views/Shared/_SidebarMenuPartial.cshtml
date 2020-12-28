@@ -14,13 +14,7 @@
                         @if (this.User.IsInRole(IssueTrackingSystem.Common.GlobalConstants.AdministratorRoleName))
                         {
                             <li><a asp-area="Administration" asp-controller="Dashboard" asp-action="Index"><i class="fas fa-digital-tachograph"></i><span>Dashboard</span></a></li>
-                            <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="fas fa-user-astronaut"></i><span>Users</span></a>
-                                <ul class="collapse">
-                                    <li><a href="index.html"><i class="fas fa-user-plus"></i><span>Add User</span></a></li>
-                                    <li><a href="index3-horizontalmenu.html"><i class="fas fa-user-edit"></i><span>Edit Users</span></a></li>
-                                </ul>
-                            </li>
+                            
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fas fa-ticket-alt"></i><span>Categories</span></a>
                                 <ul class="collapse">
@@ -33,7 +27,7 @@
                             <a href="javascript:void(0)" aria-expanded="true"><i class="fas fa-ticket-alt"></i><span>Tickets</span></a>
                             <ul class="collapse">
                                 <li><a asp-controller="Tickets" asp-action="Create"><i class="fas fa-plus"></i><span>Add a ticket</span></a></li>
-                                <li><a asp-controller="Tickets" asp-action="Create"><i class="fas fa-satellite-dish"></i><span>Assign a ticket</span></a></li>
+                                
                                 <li><a asp-controller="Tickets" asp-action="All"><i class="fas fa-list"></i><span>List all tickets</span></a></li>
                             </ul>
                         </li>

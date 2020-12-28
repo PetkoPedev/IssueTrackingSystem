@@ -1,0 +1,40 @@
+﻿@model IssueTrackingSystem.Web.ViewModels.Users.RegisterUserInputModel
+@{ 
+    this.Layout = "_Layout";
+    this.ViewData["Title"] = "Creating users";
+    
+}
+<h1>Creating users.</h1>
+<partial name="~/Views/Shared/_HeadAreaPartial.cshtml" />
+<div class="col-12 mt-5">
+    <div class="card">
+        <div class="card-body">
+            <form method="post" class="col-md-6 offset-3">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Email">Email</label>
+                    <input asp-for="Email" class="form-control form-control-lg input-rounded mb-4" type="text" placeholder="Email of the user" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Username"></label>
+                    <textarea asp-for="Username" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <textarea asp-for="Password" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword"></label>
+                    <textarea asp-for="ConfirmPassword" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+                <input type="submit" class="btn btn-primary" />
+            </form>
+        </div>
+    </div>
+</div>
+<partial name="~/Views/Shared/_SidebarMenuPartial.cshtml" />
+<partial name="~/Views/Shared/_RightPaneAreaPartial.cshtml" />
