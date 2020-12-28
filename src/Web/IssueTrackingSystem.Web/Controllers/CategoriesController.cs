@@ -32,17 +32,24 @@
             return this.View(viewModel);
         }
 
-        [Authorize]
-        public IActionResult GetAll()
-        {
-            return this.View();
-        }
+        // [Authorize]
+        // public IActionResult GetAll()
+        // {
+        //     return this.View();
+        // }
 
-        [HttpPost]
+        // [HttpPost]
         [Authorize]
-        public IActionResult All(int id)
+        public IActionResult All(int id = 1)
         {
-            var viewModel = this.categoriesService.GetAll<AllCategoriesViewModel>(id);
+            const int ItemsPerPage = 4;
+            var viewModel = new AllCategoriesViewModel
+            {
+                ItemsPerPage = ItemsPerPage,
+                PageNumber = id,
+                ItemsCount = this.categoriesService.GetCount(),
+                Categories = this.categoriesService.GetAll(id, ItemsPerPage),
+            };
             return this.View(viewModel);
         }
 

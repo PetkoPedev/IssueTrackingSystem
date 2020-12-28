@@ -87,14 +87,17 @@
             return ticket.Id;
         }
 
-        public async Task EditAsync(int id, int categoryId, int ticketStatus, int ticketPriority)
+        public async Task<int> EditAsync(int id, int category, int ticketStatus, int ticketPriority)
         {
             var ticket = this.ticketRepository.AllAsNoTracking().Where(x => x.Id == id).FirstOrDefault();
+            ticket.Category.Id = category;
             ticket.TicketStatus.Id = ticketStatus;
             ticket.TicketPriority.Id = ticketPriority;
 
-            this.ticketRepository.Update(ticket);
+            // this.ticketRepository.Update(ticket);
             await this.ticketRepository.SaveChangesAsync();
+
+            return ticket.Id;
         }
     }
 }

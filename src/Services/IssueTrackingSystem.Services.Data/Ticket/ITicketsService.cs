@@ -21,6 +21,6 @@
 
         Task<int> DeleteAsync(int id);
 
-        Task EditAsync(int id, int categoryId, int ticketStatus, int ticketPriority);
+        Task<int> EditAsync(int id, int category, int ticketStatus, int ticketPriority);
     }
 }

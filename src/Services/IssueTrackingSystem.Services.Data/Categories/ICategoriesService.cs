@@ -6,15 +6,18 @@
     using System.Threading.Tasks;
 
     using IssueTrackingSystem.Data.Models;
+    using IssueTrackingSystem.Web.ViewModels.Categories;
 
     public interface ICategoriesService
     {
-        IEnumerable<T> GetAll<T>(int? count = null);
+        public IEnumerable<CategoryViewModel> GetAll(int page, int itemsPerPage = 4);
 
         T GetByName<T>(string name);
 
         Task<int> CreateAsync(string name);
 
         IEnumerable<KeyValuePair<string, string>> GetAllCategoriesAsKeyValuePairs();
+
+        int GetCount();
     }
 }

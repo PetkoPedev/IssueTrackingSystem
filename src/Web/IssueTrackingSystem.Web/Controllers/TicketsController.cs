@@ -106,10 +106,10 @@
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Edit(TicketEditViewModel viewModel)
+        public async Task<IActionResult> Edit(int id, TicketEditViewModel viewModel)
         {
             var user = await this.userManager.GetUserAsync(this.User);
-            await this.ticketsService.EditAsync(viewModel.Id, viewModel.CategoryId, viewModel.StatusId, viewModel.PriorityId);
+            await this.ticketsService.EditAsync(id, viewModel.CategoryId, viewModel.StatusId, viewModel.PriorityId);
 
             return this.RedirectToAction(nameof(this.All));
         }

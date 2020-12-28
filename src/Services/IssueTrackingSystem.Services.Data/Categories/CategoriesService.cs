@@ -9,6 +9,7 @@
     using IssueTrackingSystem.Data.Common.Repositories;
     using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Services.Mapping;
+    using IssueTrackingSystem.Web.ViewModels.Categories;
 
     public class CategoriesService : ICategoriesService
     {
@@ -32,16 +33,18 @@
             return category.Id;
         }
 
-        public IEnumerable<T> GetAll<T>(int? count = null)
+        public IEnumerable<CategoryViewModel> GetAll(int page, int itemsPerPage = 4)
         {
-            IQueryable<T> allCategories = (IQueryable<T>)this.categoriesRepository.All().OrderBy(x => x.Name);
+            var categories = this.categoriesRepository.AllAsNoTracking()
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
+                .Select(x => new CategoryViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                }).ToList();
 
-            if (count.HasValue)
-            {
-                allCategories = allCategories.Take(count.Value);
-            }
-
-            return allCategories.To<T>().ToList();
+            return categories;
         }
 
         public IEnumerable<KeyValuePair<string, string>> GetAllCategoriesAsKeyValuePairs()
@@ -59,6 +62,11 @@
                 .Where(x => x.Name == name).To<T>().FirstOrDefault();
 
             return category;
+        }
+
+        public int GetCount()
+        {
+            return this.categoriesRepository.All().Count();
         }
     }
 }

@@ -1,0 +1,33 @@
+﻿@model IssueTrackingSystem.Web.ViewModels.Categories.AllCategoriesViewModel
+@{
+    this.ViewData["Title"] = "All Categories";
+}
+<partial name="_SidebarMenuPartial" />
+<partial name="_HeadAreaPartial" />
+<div class="shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">All Categories</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                    </tr>
+                </thead>
+                @foreach (var category in this.Model.Categories)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@category.Id</td>
+                            <td>@category.Name</td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+<partial name="_PagingPartial" model="@Model" />

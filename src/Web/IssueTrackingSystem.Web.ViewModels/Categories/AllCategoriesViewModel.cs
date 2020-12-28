@@ -7,10 +7,8 @@
     using IssueTrackingSystem.Data.Models;
     using IssueTrackingSystem.Services.Mapping;
 
-    public class AllCategoriesViewModel : IMapFrom<TicketCategory>
+    public class AllCategoriesViewModel : PagingViewModel
     {
-        public string Name { get; set; }
-
-        public int TicketsCount { get; set; }
+        public IEnumerable<CategoryViewModel> Categories { get; set; }
     }
 }
