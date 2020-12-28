@@ -7,5 +7,7 @@
         public int NotesCount { get; set; }
 
         public int ArticlesCount { get; set; }
+
+        public int CategoriesCount { get; set; }
     }
 }

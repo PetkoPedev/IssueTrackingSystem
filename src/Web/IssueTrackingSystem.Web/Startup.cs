@@ -13,6 +13,7 @@
     using IssueTrackingSystem.Services.Data.Categories;
     using IssueTrackingSystem.Services.Data.Comments;
     using IssueTrackingSystem.Services.Data.Counts;
+    using IssueTrackingSystem.Services.Data.Dashboard;
     using IssueTrackingSystem.Services.Data.Notes;
     using IssueTrackingSystem.Services.Data.Priorities;
     using IssueTrackingSystem.Services.Data.Statuses;
@@ -82,7 +83,7 @@
             services.AddTransient<ICommentsService, CommentsService>();
             services.AddTransient<IStatusesService, StatusesService>();
             services.AddTransient<IPrioritiesService, PrioritiesService>();
-            // services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<IDashboardServices, DashboardServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
