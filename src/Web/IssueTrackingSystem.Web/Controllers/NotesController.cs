@@ -42,7 +42,7 @@
             }
 
             var note = await this.notesService.CreateAsync(input.Name, input.Content, user.Id);
-            return this.Redirect("/");
+            return this.RedirectToAction(nameof(this.All));
         }
 
         [Authorize]

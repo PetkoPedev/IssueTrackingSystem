@@ -18,6 +18,10 @@
 
         public string CategoryName { get; set; }
 
+        public int TicketStatusId { get; set; }
+
+        public string TicketStatusName { get; set; }
+
         public string Content { get; set; }
     }
 }
