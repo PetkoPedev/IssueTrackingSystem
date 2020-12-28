@@ -20,14 +20,18 @@
             this.articleRepository = articleRepository;
         }
 
-        public async Task<int> CreateAsync(string articleName, string content, int categoryId, string userId)
+        public async Task<int> CreateAsync(
+            string articleName,
+            string content,
+            int categoryId,
+            string userId)
         {
             var article = new Article
             {
                 ArticleName = articleName,
                 Content = content,
                 UserId = userId,
-                ArticleCategoryId = categoryId,
+                CategoryId = categoryId,
             };
 
             await this.articleRepository.AddAsync(article);
@@ -62,7 +66,7 @@
                     Id = x.Id,
                     ArticleName = x.ArticleName,
                     Content = x.Content,
-                    ArticleCategoryId = x.ArticleCategory.Id,
+                    CategoryId = x.Category.Id,
                     UserId = x.UserId,
                 }).ToList();
 

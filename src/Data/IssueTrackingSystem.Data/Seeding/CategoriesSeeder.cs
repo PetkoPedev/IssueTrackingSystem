@@ -12,7 +12,7 @@
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
-            if (dbContext.TicketCategories.Any())
+            if (dbContext.Categories.Any())
             {
                 return;
             }
@@ -20,7 +20,7 @@
             var categories = new List<string> { "Hardware", "Software", "MS Office" };
             foreach (var category in categories)
             {
-                await dbContext.TicketCategories.AddAsync(new TicketCategory
+                await dbContext.Categories.AddAsync(new Category
                 {
                     Name = category,
                 });

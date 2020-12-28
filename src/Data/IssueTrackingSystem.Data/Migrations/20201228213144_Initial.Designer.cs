@@ -10,16 +10,16 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IssueTrackingSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201128171856_RemovedLastMigration")]
-    partial class RemovedLastMigration
+    [Migration("20201228213144_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.10")
+                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "5.0.1");
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.ApplicationRole", b =>
                 {
@@ -43,12 +43,12 @@ namespace IssueTrackingSystem.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
@@ -56,7 +56,7 @@ namespace IssueTrackingSystem.Data.Migrations
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex")
+                        .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
@@ -81,8 +81,8 @@ namespace IssueTrackingSystem.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
@@ -100,12 +100,12 @@ namespace IssueTrackingSystem.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -123,19 +123,19 @@ namespace IssueTrackingSystem.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
 
                     b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
+                        .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex")
+                        .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
@@ -146,7 +146,7 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("ArticleName")
                         .HasColumnType("nvarchar(max)");
@@ -188,7 +188,7 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -217,7 +217,7 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
@@ -234,6 +234,9 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int");
+
                     b.Property<int>("TicketId")
                         .HasColumnType("int");
 
@@ -243,6 +246,8 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("ParentId");
 
                     b.HasIndex("TicketId");
 
@@ -256,7 +261,7 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("AuthorId")
                         .HasColumnType("nvarchar(450)");
@@ -293,7 +298,7 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -325,7 +330,7 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -345,10 +350,10 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("TicketPriority")
+                    b.Property<int>("TicketPriorityId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TicketStatus")
+                    b.Property<int>("TicketStatusId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -363,9 +368,71 @@ namespace IssueTrackingSystem.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
+                    b.HasIndex("TicketPriorityId");
+
+                    b.HasIndex("TicketStatusId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("IssueTrackingSystem.Data.Models.TicketPriority", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.ToTable("Priorities");
+                });
+
+            modelBuilder.Entity("IssueTrackingSystem.Data.Models.TicketStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.ToTable("Statuses");
                 });
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.UserTicket", b =>
@@ -388,7 +455,7 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -412,7 +479,7 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -498,10 +565,18 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "User")
                         .WithMany("Articles")
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Comment", b =>
                 {
+                    b.HasOne("IssueTrackingSystem.Data.Models.Comment", "Parent")
+                        .WithMany()
+                        .HasForeignKey("ParentId");
+
                     b.HasOne("IssueTrackingSystem.Data.Models.Ticket", "Ticket")
                         .WithMany("Comments")
                         .HasForeignKey("TicketId")
@@ -511,6 +586,12 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Parent");
+
+                    b.Navigation("Ticket");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Note", b =>
@@ -518,6 +599,8 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "Author")
                         .WithMany("Notes")
                         .HasForeignKey("AuthorId");
+
+                    b.Navigation("Author");
                 });
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Ticket", b =>
@@ -528,9 +611,29 @@ namespace IssueTrackingSystem.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("IssueTrackingSystem.Data.Models.TicketPriority", "TicketPriority")
+                        .WithMany("Tickets")
+                        .HasForeignKey("TicketPriorityId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("IssueTrackingSystem.Data.Models.TicketStatus", "TicketStatus")
+                        .WithMany("Tickets")
+                        .HasForeignKey("TicketStatusId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("IssueTrackingSystem.Data.Models.ApplicationUser", "User")
                         .WithMany("Tickets")
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("TicketPriority");
+
+                    b.Navigation("TicketStatus");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.UserTicket", b =>
@@ -546,6 +649,10 @@ namespace IssueTrackingSystem.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Ticket");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -597,6 +704,45 @@ namespace IssueTrackingSystem.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("IssueTrackingSystem.Data.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Articles");
+
+                    b.Navigation("Claims");
+
+                    b.Navigation("Comments");
+
+                    b.Navigation("Logins");
+
+                    b.Navigation("Notes");
+
+                    b.Navigation("Roles");
+
+                    b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("IssueTrackingSystem.Data.Models.Category", b =>
+                {
+                    b.Navigation("Articles");
+
+                    b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("IssueTrackingSystem.Data.Models.Ticket", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("IssueTrackingSystem.Data.Models.TicketPriority", b =>
+                {
+                    b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("IssueTrackingSystem.Data.Models.TicketStatus", b =>
+                {
+                    b.Navigation("Tickets");
                 });
 #pragma warning restore 612, 618
         }

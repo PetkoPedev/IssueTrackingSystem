@@ -146,11 +146,11 @@ namespace IssueTrackingSystem.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("ArticleCategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ArticleName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
@@ -172,7 +172,7 @@ namespace IssueTrackingSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ArticleCategoryId");
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("IsDeleted");
 
@@ -181,7 +181,7 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("IssueTrackingSystem.Data.Models.ArticleCategory", b =>
+            modelBuilder.Entity("IssueTrackingSystem.Data.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -207,7 +207,7 @@ namespace IssueTrackingSystem.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("ArticleCategories");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Comment", b =>
@@ -373,35 +373,6 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Tickets");
-                });
-
-            modelBuilder.Entity("IssueTrackingSystem.Data.Models.TicketCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.ToTable("TicketCategories");
                 });
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.TicketPriority", b =>
@@ -583,9 +554,9 @@ namespace IssueTrackingSystem.Data.Migrations
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Article", b =>
                 {
-                    b.HasOne("IssueTrackingSystem.Data.Models.ArticleCategory", "ArticleCategory")
+                    b.HasOne("IssueTrackingSystem.Data.Models.Category", "Category")
                         .WithMany("Articles")
-                        .HasForeignKey("ArticleCategoryId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -593,7 +564,7 @@ namespace IssueTrackingSystem.Data.Migrations
                         .WithMany("Articles")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("ArticleCategory");
+                    b.Navigation("Category");
 
                     b.Navigation("User");
                 });
@@ -632,7 +603,7 @@ namespace IssueTrackingSystem.Data.Migrations
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Ticket", b =>
                 {
-                    b.HasOne("IssueTrackingSystem.Data.Models.TicketCategory", "Category")
+                    b.HasOne("IssueTrackingSystem.Data.Models.Category", "Category")
                         .WithMany("Tickets")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -750,19 +721,16 @@ namespace IssueTrackingSystem.Data.Migrations
                     b.Navigation("Tickets");
                 });
 
-            modelBuilder.Entity("IssueTrackingSystem.Data.Models.ArticleCategory", b =>
+            modelBuilder.Entity("IssueTrackingSystem.Data.Models.Category", b =>
                 {
                     b.Navigation("Articles");
+
+                    b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.Ticket", b =>
                 {
                     b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("IssueTrackingSystem.Data.Models.TicketCategory", b =>
-                {
-                    b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("IssueTrackingSystem.Data.Models.TicketPriority", b =>

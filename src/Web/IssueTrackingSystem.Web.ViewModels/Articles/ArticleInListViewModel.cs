@@ -10,6 +10,6 @@
 
         public string UserId { get; set; }
 
-        public int ArticleCategoryId { get; set; }
+        public int CategoryId { get; set; }
     }
 }

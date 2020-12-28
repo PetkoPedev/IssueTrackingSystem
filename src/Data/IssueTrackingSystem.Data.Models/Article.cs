@@ -16,8 +16,8 @@
 
         public virtual ApplicationUser User { get; set; }
 
-        public int ArticleCategoryId { get; set; }
+        public int CategoryId { get; set; }
 
-        public virtual ArticleCategory ArticleCategory { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

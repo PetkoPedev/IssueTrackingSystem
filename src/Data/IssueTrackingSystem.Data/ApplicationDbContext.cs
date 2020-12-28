@@ -28,11 +28,9 @@
 
         public DbSet<Comment> Comments { get; set; }
 
-        public DbSet<TicketCategory> TicketCategories { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         public DbSet<Article> Articles { get; set; }
-
-        public DbSet<ArticleCategory> ArticleCategories { get; set; }
 
         public DbSet<Note> Notes { get; set; }
 

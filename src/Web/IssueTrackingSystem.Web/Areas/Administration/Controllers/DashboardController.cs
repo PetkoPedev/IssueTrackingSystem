@@ -28,8 +28,6 @@
             dashboard.TicketsCount = this.dashboardServices.GetTicketsCounts();
 
             return this.View(dashboard);
-            // var viewModel = new IndexViewModel { };
-            // return this.View(viewModel);
         }
     }
 }

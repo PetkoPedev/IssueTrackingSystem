@@ -32,13 +32,6 @@
             return this.View(viewModel);
         }
 
-        // [Authorize]
-        // public IActionResult GetAll()
-        // {
-        //     return this.View();
-        // }
-
-        // [HttpPost]
         [Authorize]
         public IActionResult All(int id = 1)
         {

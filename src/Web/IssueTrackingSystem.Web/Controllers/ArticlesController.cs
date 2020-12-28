@@ -50,7 +50,7 @@
             }
 
             var article = await this.articlesService.CreateAsync(input.ArticleName, input.Content, input.CategoryId, user.Id);
-            return this.RedirectToAction(nameof(this.ById), new { id = article });
+            return this.RedirectToAction(nameof(this.All));
         }
 
         [Authorize]

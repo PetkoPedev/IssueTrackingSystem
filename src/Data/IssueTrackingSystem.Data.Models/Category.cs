@@ -4,14 +4,17 @@
 
     using IssueTrackingSystem.Data.Common.Models;
 
-    public class ArticleCategory : BaseDeletableModel<int>
+    public class Category : BaseDeletableModel<int>
     {
-        public ArticleCategory()
+        public Category()
         {
+            this.Tickets = new HashSet<Ticket>();
             this.Articles = new HashSet<Article>();
         }
 
         public string Name { get; set; }
+
+        public virtual ICollection<Ticket> Tickets { get; set; }
 
         public ICollection<Article> Articles { get; set; }
     }

@@ -13,16 +13,16 @@
 
     public class CategoriesService : ICategoriesService
     {
-        private readonly IDeletableEntityRepository<TicketCategory> categoriesRepository;
+        private readonly IDeletableEntityRepository<Category> categoriesRepository;
 
-        public CategoriesService(IDeletableEntityRepository<TicketCategory> categoriesRepository)
+        public CategoriesService(IDeletableEntityRepository<Category> categoriesRepository)
         {
             this.categoriesRepository = categoriesRepository;
         }
 
         public async Task<int> CreateAsync(string name)
         {
-            var category = new TicketCategory
+            var category = new Category
             {
                 Name = name,
             };
